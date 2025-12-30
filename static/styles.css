@@ -1,0 +1,107 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #0a0f1c;
+  color: #ffffff;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* ✨ Glowing background using pseudo-elements */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(0, 174, 255, 0.15) 2px, transparent 2px),
+              radial-gradient(circle, rgba(0, 174, 255, 0.1) 1px, transparent 1px);
+  background-size: 80px 80px;
+  animation: backgroundMove 30s linear infinite;
+  z-index: -1;
+  opacity: 0.5;
+}
+
+@keyframes backgroundMove {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(-50px, -50px); }
+}
+
+.container {
+  text-align: center;
+  padding: 50px 20px;
+}
+
+header h1 {
+  font-size: 3rem;
+  color: #ffffff;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+
+header p {
+  font-size: 1.2rem;
+  color: #cccccc;
+  margin-bottom: 30px;
+  max-width: 600px;
+  margin-inline: auto;
+}
+
+.cta {
+  background: linear-gradient(90deg, #00aaff, #0055ff);
+  border: none;
+  padding: 15px 35px;
+  font-size: 1rem;
+  color: #fff;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  box-shadow: 0 0 15px rgba(0, 174, 255, 0.4);
+}
+
+.cta:hover {
+  background: linear-gradient(90deg, #0055ff, #00aaff);
+  box-shadow: 0 0 25px rgba(0, 174, 255, 0.6);
+}
+
+.features {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-top: 50px;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 30px;
+  border-radius: 15px;
+  width: 300px;
+  box-shadow: 0 0 20px rgba(0,255,255,0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(0,255,255,0.1);
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0 30px rgba(0, 174, 255, 0.4);
+}
+
+.card img {
+  height: 60px;
+  margin-bottom: 20px;
+  filter: invert(1);
+}
+
+.card h3 {
+  margin-bottom: 15px;
+  font-size: 1.3rem;
+  color: #00c6ff;
+}
+
+.card p {
+  color: #aaa;
+  font-size: 0.95rem;
+}

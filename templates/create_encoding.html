@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Upload & Delete Person</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[#0a0f1c] flex justify-center items-center min-h-screen text-white">
+
+  <div class="backdrop-blur-md border border-cyan-400/10 shadow-2xl rounded-2xl p-8 w-full max-w-4xl bg-white/5">
+    <h2 class="text-3xl font-bold text-cyan-400 mb-8 text-center">Manage Known Persons</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Upload Section -->
+      <div class="bg-white/10 backdrop-blur-lg p-6 rounded-xl shadow border border-cyan-300/10">
+        <h3 class="text-xl font-bold text-cyan-300 mb-4">Add a Person</h3>
+        <p class="text-gray-300 mb-4">Add a new known person to the system.</p>
+
+        <form action="/create_encoding" method="POST" enctype="multipart/form-data" class="space-y-4" onsubmit="return showProgress()">
+          <input type="text" name="person_name" placeholder="Enter Person's Name"
+            class="w-full px-4 py-2 bg-transparent border border-cyan-400/30 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-400" required />
+
+          <input type="file" name="images" multiple required
+            class="w-full px-4 py-2 bg-transparent border border-cyan-400/30 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-400" />
+
+          <input type="hidden" name="action" value="add" />
+
+          <button type="submit"
+            class="w-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-blue-500 hover:to-cyan-600 text-white font-semibold py-2 rounded-lg transition duration-300 shadow-lg">
+            Upload & Update Embeddings
+          </button>
+
+          <!-- Progress Bar-->
+          <div id="progress" class="hidden mt-4">
+            <div class="w-full bg-gray-700 rounded-full">
+              <div id="progress-bar" class="h-2 bg-cyan-400 rounded-full" style="width: 0%;"></div>
+            </div>
+            <p class="text-cyan-300 text-sm mt-2">Processing...</p>
+          </div>
+        </form>
+      </div>
+
+      <!-- Delete Section -->
+      <div class="bg-white/10 backdrop-blur-lg p-6 rounded-xl shadow border border-cyan-300/10">
+        <h3 class="text-xl font-bold text-red-400 mb-4">Delete a Person</h3>
+        <p class="text-gray-300 mb-4">Remove a known person from the system.</p>
+
+        <form action="/create_encoding" method="POST" class="space-y-4">
+          <input type="text" name="person_name" placeholder="Enter Person's Name to Delete"
+            class="w-full px-4 py-2 bg-transparent border border-red-400/40 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-red-400" required />
+
+          <input type="hidden" name="action" value="delete" />
+
+          <button type="submit"
+            class="w-full bg-gradient-to-r from-red-500 to-pink-600 hover:from-pink-500 hover:to-red-600 text-white font-semibold py-2 rounded-lg transition duration-300 shadow-lg">
+            Delete Person
+          </button>
+        </form>
+      </div>
+    </div>
+
+    {% if message %}
+      <p class="text-green-400 font-semibold mt-6 text-center">{{ message }}</p>
+    {% endif %}
+  </div>
+
+  <script>
+    function showProgress() {
+      document.getElementById("progress").classList.remove("hidden");
+      let progressBar = document.getElementById("progress-bar");
+      let width = 0;
+      let interval = setInterval(() => {
+        if (width >= 100) {
+          clearInterval(interval);
+        } else {
+          width += 10;
+          progressBar.style.width = width + "%";
+        }
+      }, 500);
+      return true;
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SafeGuard - Welcome</title>
+  <link rel="stylesheet" href="../static/styles.css" />
+  <style>
+    .card .button {
+      margin-top: 10px;
+      display: inline-block;
+      background-color: #00e0ff;
+      color: #000;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 0.95rem;
+      transition: background-color 0.3s;
+    }
+    .card .button:hover {
+      background-color: #00c8dd;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Welcome to SafeGuard</h1>
+      <p>Harness the power of advanced technology to identify concealed weapons and ensure safety.</p>
+    </header>
+
+    <section class="features">
+      <div class="card">
+        <img src="https://img.icons8.com/ios-filled/100/monitor.png" alt="Start Detection"/>
+        <h3>START DETECTION</h3>
+        <p>Initiate real-time weapon detection with video analysis.</p>
+        <a class="button" href="/detection">Start</a>
+      </div>
+      <div class="card">
+        <img src="https://img.icons8.com/ios-filled/100/security-shield-green.png" alt="Safe People"/>
+        <h3>SAFE PEOPLE</h3>
+        <p>Focus monitoring efforts on individuals without detected threats.</p>
+        <a class="button" href="/safepeople">View</a>
+      </div>
+      <div class="card">
+        <img src="https://img.icons8.com/ios-filled/100/developer-mode.png" alt="Generate Encodings"/>
+        <h3>GENERATE ENCODINGS</h3>
+        <p>Create unique encodings for identifying and differentiating weapons.</p>
+        <a class="button" href="/create_encoding">Generate</a>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

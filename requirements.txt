@@ -1,0 +1,16 @@
+numpy>=1.24.0
+opencv-python>=4.7.0
+ultralytics>=8.0.0
+# `keras-facenet` only has releases up to 0.3.2 on PyPI; pin to the latest available
+keras-facenet==0.3.2
+scikit-learn>=1.2.0
+flask>=2.0.0
+deepface>=0.0.75
+pygame>=2.1.0
+Pillow>=9.0.0
+imageio>=2.25.0
+matplotlib>=3.6.0
+# NOTE: We do NOT pin `torch`/`torchvision` here because on Windows users often need to
+# select the correct wheel (CPU vs CUDA). Installation instructions below will install
+# CPU wheels by default. If you have CUDA, install the matching CUDA wheels from PyTorch.
+python-dotenv>=1.0.0

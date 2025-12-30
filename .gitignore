@@ -1,0 +1,15 @@
+__pycache__/
+
+# Virtual environments
+.venv/
+.venv311/
+
+# Env files
+*.env
+
+# VS Code
+.vscode/
+
+# Dataset, models, runs (if you want to keep them out of git)
+dataset/
+runs100epochs/

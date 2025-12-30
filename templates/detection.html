@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Live Detection Stream</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[#0a0f1c] text-white font-sans text-center p-10 min-h-screen">
+
+  <h1 class="text-4xl font-bold text-cyan-400 mb-8 drop-shadow-md">Live Detection Stream</h1>
+
+  <div class="flex justify-center mb-8">
+    <img id="video-stream" src="" alt="Live Stream"
+         class="hidden w-[640px] h-[480px] rounded-xl border border-cyan-400/20 shadow-xl" />
+  </div>
+
+  <div class="space-x-4">
+    <button onclick="startStream()" 
+            class="bg-cyan-500 hover:bg-cyan-600 text-black font-bold py-2 px-6 rounded-lg shadow transition">
+      Start Streaming
+    </button>
+    <button onclick="stopStream()" 
+            class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-6 rounded-lg shadow transition">
+      Stop Streaming
+    </button>
+  </div>
+
+  <script>
+    function startStream() {
+      const video = document.getElementById('video-stream');
+      video.src = '/video_feed';
+      video.classList.remove('hidden');
+    }
+
+    function stopStream() {
+      const video = document.getElementById('video-stream');
+      video.src = '';
+      video.classList.add('hidden');
+
+      fetch('/stop_stream')
+        .then(response => response.text())
+        .then(data => console.log(data))
+        .catch(err => console.error('Error stopping stream:', err));
+    }
+  </script>
+
+</body>
+</html>
