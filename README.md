@@ -1,74 +1,123 @@
-# Weapon Detection — Setup & Run
+# SafeGuard — Real-Time Weapon & Face Detection
 
-Quick steps to create a compatible environment and run the project on Windows.
+A real-time security surveillance system that triggers an audio alarm and sends an email alert when it simultaneously detects:
+- A **person** in the frame
+- An **unknown face** (not enrolled in the safe-people database)
+- A **weapon** (gun or knife)
 
-Prerequisites
-- Python 3.11 installed and available via the `py` launcher (recommended).
-- Git (optional) and a camera connected for realtime detection.
+Supports two run modes — a Flask web UI and a CLI window.
 
-1) Create Python 3.11 venv
+---
 
-PowerShell (recommended):
+## Models
+
+| Task | Model | File |
+|------|-------|------|
+| Weapon detection | Custom YOLO11s (100 epochs) | `best100.pt` |
+| Person detection | YOLOv8n (COCO pretrained) | `yolov8n.pt` |
+| Face detection | InsightFace SCRFD-500M | downloaded to `~/.insightface/` |
+| Face recognition | InsightFace ArcFace w600k_mbf (512-d) | downloaded to `~/.insightface/` |
+
+---
+
+## Quick Start
+
+### 1 — Create and activate a virtual environment
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
 ```
-Set-Location 'd:\coding\.vscode\Weapon_Detection-main'
-py -3.11 -m venv .venv311
-.\.venv311\Scripts\Activate.ps1
-python -m pip install --upgrade pip setuptools wheel
+
+### 2 — Install PyTorch (CPU)
+
+```powershell
+pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
 ```
 
-2) Install CPU dependencies
+For NVIDIA GPU replace `cpu` with your CUDA version (e.g. `cu121`).
 
-This repository intentionally installs CPU builds by default to avoid CUDA mismatches. If you have CUDA and want GPU acceleration, see the "GPU Wheels" section below.
+### 3 — Install remaining dependencies
 
-```
-# Install CPU PyTorch + torchvision
-python -m pip install --index-url https://download.pytorch.org/whl/cpu torch torchvision --upgrade
-
-# Install the rest from requirements.txt
+```powershell
 pip install -r requirements.txt
 ```
 
-3) Configure email credentials securely
+InsightFace will download the `buffalo_s` model pack (~85 MB) to `~/.insightface/models/` on first run.
 
-- Copy `.env.example` to `.env` and fill values, or set the environment variables in PowerShell:
+### 4 — Configure email alerts
 
-```
-$env:ALERT_SENDER_EMAIL = 'youremail@example.com'
-$env:ALERT_EMAIL_PASSWORD = 'your_app_password'
-$env:ALERT_TO_EMAIL = 'recipient@example.com'
-```
-
-Important: For Gmail, create an "app password" or enable a secure sending method — do not store real account passwords in code.
-
-4) Run the web UI (Flask)
+Copy `.env.example` to `.env` and fill in your values:
 
 ```
+ALERT_SENDER_EMAIL=youremail@gmail.com
+ALERT_EMAIL_PASSWORD=xxxx xxxx xxxx xxxx
+ALERT_TO_EMAIL=recipient@gmail.com
+```
+
+`ALERT_EMAIL_PASSWORD` must be a **Gmail App Password** (not your account password).  
+Generate one at: Google Account → Security → 2-Step Verification → App Passwords.
+
+### 5 — Run
+
+**Web UI (recommended):**
+```powershell
 python app.py
-# The app runs on http://127.0.0.1:5000 by default
+# Open http://127.0.0.1:5000
 ```
 
-5) Run the realtime detector (CLI)
-
-This opens a camera window and runs detection in a loop.
-
-```
+**CLI (OpenCV window):**
+```powershell
 python main.py
-# Press 'q' in the camera window to quit
+# Press 'q' to quit
 ```
 
-GPU Wheels (optional)
-- If you have an NVIDIA GPU and a specific CUDA toolkit installed, install matching PyTorch wheels from https://pytorch.org/get-started/locally/ (select your CUDA version) instead of the CPU wheels above.
-- For TensorFlow GPU, install the appropriate `tensorflow` package that matches your GPU + drivers (careful: TensorFlow GPU support can be version-sensitive).
+---
 
-Notes & Security
-- `email_sender.py` now reads `ALERT_SENDER_EMAIL` and `ALERT_EMAIL_PASSWORD` from the environment. Do not commit `.env` (it's ignored by `.gitignore`).
-- You may need to download or point to model files included in the repo (e.g., `best100.pt`, `yolov5su.pt`). Keep them in the project root or update model paths in code.
-- If you want me to switch the environment to GPU wheels, tell me your CUDA version and I'll provide the exact `pip` command (or I can switch the venv for you).
+## Enrolling Safe People
 
-Troubleshooting
-- If `pip install -r requirements.txt` fails due to Python version incompatibilities, verify you're using Python 3.11.
-- If DeepFace/retinaface complains about `tf-keras`, install `tf-keras` in the same environment.
+1. Go to `http://127.0.0.1:5000/create_encoding`
+2. Enter a name and upload 3–5 clear, well-lit face photos (JPG/PNG)
+3. The system generates ArcFace embeddings in the background
+4. Enrolled faces appear with a **green box** in the detection stream; unknown faces get a **red box**
 
-License / Disclaimer
-- This repo is provided as-is. Secure credentials and verify legal/privacy considerations before using in production.
-# Weapon_Detection
+---
+
+## Web Routes
+
+| Route | Purpose |
+|-------|---------|
+| `/` | Home page |
+| `/detection` | Live MJPEG detection stream |
+| `/safepeople` | List enrolled people |
+| `/create_encoding` | Add or remove people |
+| `/stop_stream` | Stop the active stream |
+
+---
+
+## Configuration
+
+All tuneable values are in `config.py` and can be overridden via environment variables or `.env`:
+
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `CAMERA_INDEX` | `2` | OpenCV camera device index |
+| `FACE_THRESHOLD` | `0.35` | ArcFace cosine similarity threshold |
+| `WEAPON_THRESHOLD` | `0.6` | YOLO weapon confidence threshold |
+| `PERSON_THRESHOLD` | `0.5` | YOLO person confidence threshold |
+| `ALARM_COOLDOWN` | `5` | Seconds between repeated alarms |
+| `ALARM_EMAIL_THRESHOLD` | `3` | Alarm triggers before email is sent |
+| `FRAME_SKIP` | `3` | Process every Nth frame (higher = lighter CPU) |
+
+---
+
+## Troubleshooting
+
+| Symptom | Fix |
+|---------|-----|
+| Black camera screen | Another process is holding the camera. Run `taskkill /F /IM python.exe` then restart. |
+| All faces show Unknown | Re-enrol via `/create_encoding`. Check Flask log for embedding errors. |
+| Email not sending | Confirm `.env` exists with correct values. Use an App Password, not your account password. |
+| Camera not found | Change `CAMERA_INDEX` in `.env` (try `0`, `1`, `2`). |
+| Slow detection | Increase `FRAME_SKIP` in `.env` (e.g. `5`). |

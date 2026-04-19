@@ -1,16 +1,27 @@
+# ── Core CV / ML ──────────────────────────────────────────────────────────────
 numpy>=1.24.0
 opencv-python>=4.7.0
-ultralytics>=8.0.0
-# `keras-facenet` only has releases up to 0.3.2 on PyPI; pin to the latest available
-keras-facenet==0.3.2
-scikit-learn>=1.2.0
+ultralytics>=8.1.0          # YOLOv8 + YOLO11 support; >=8.1 for stable YOLO11 API
+
+# ── Face pipeline (Phase 2 upgrade) ──────────────────────────────────────────
+# Replaces keras-facenet (FaceNet-128d) + deepface (Facenet512).
+# InsightFace bundles SCRFD face detector + ArcFace recogniser (512-d).
+# Models (~85 MB for buffalo_s) are downloaded to ~/.insightface/models/ on first run.
+insightface>=0.7.3
+onnxruntime>=1.16.0         # CPU inference backend for InsightFace ONNX models
+
+# ── Web ───────────────────────────────────────────────────────────────────────
 flask>=2.0.0
-deepface>=0.0.75
+Werkzeug>=2.0.0             # secure_filename + request utilities
+
+# ── Audio ─────────────────────────────────────────────────────────────────────
 pygame>=2.1.0
+
+# ── Utilities ─────────────────────────────────────────────────────────────────
+python-dotenv>=1.0.0        # .env file loading
 Pillow>=9.0.0
-imageio>=2.25.0
-matplotlib>=3.6.0
-# NOTE: We do NOT pin `torch`/`torchvision` here because on Windows users often need to
-# select the correct wheel (CPU vs CUDA). Installation instructions below will install
-# CPU wheels by default. If you have CUDA, install the matching CUDA wheels from PyTorch.
-python-dotenv>=1.0.0
+
+# ── PyTorch (not pinned here — install matching your hardware) ────────────────
+# CPU:   pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+# CUDA:  pip install torch torchvision --index-url https://download.pytorch.org/whl/cu121
+# (replace cu121 with your actual CUDA version)

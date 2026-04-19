@@ -10,4 +10,15 @@ __pycache__/
 # VS Code
 .vscode/
 
+# Generated at runtime — not source files
+screenshot.png
+test_recognition_result.png
 
+# Face data — keep local, never commit
+dataset/*/
+facenet_embeddings1.npy
+
+# Model weights are large binaries
+# best100.pt is committed intentionally (custom trained model)
+# yolov8n.pt is auto-downloaded by ultralytics on first run
+yolov8n.pt
