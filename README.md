@@ -5,7 +5,7 @@ A real-time security surveillance system that triggers an audio alarm and sends 
 - An **unknown face** (not enrolled in the safe-people database)
 - A **weapon** (gun or knife)
 
-Supports two run modes — a Flask web UI and a CLI window.
+Supports two run modes : a Flask web UI and a CLI window.
 
 ---
 
@@ -22,7 +22,7 @@ Supports two run modes — a Flask web UI and a CLI window.
 
 ## Quick Start
 
-### 1 — Create and activate a virtual environment
+### 1. Create and activate a virtual environment
 
 ```powershell
 python -m venv .venv
@@ -30,7 +30,7 @@ python -m venv .venv
 python -m pip install --upgrade pip
 ```
 
-### 2 — Install PyTorch (CPU)
+### 2. Install PyTorch (CPU)
 
 ```powershell
 pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
@@ -38,7 +38,7 @@ pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
 
 For NVIDIA GPU replace `cpu` with your CUDA version (e.g. `cu121`).
 
-### 3 — Install remaining dependencies
+### 3. Install remaining dependencies
 
 ```powershell
 pip install -r requirements.txt
@@ -46,7 +46,7 @@ pip install -r requirements.txt
 
 InsightFace will download the `buffalo_s` model pack (~85 MB) to `~/.insightface/models/` on first run.
 
-### 4 — Configure email alerts
+### 4. Configure email alerts
 
 Copy `.env.example` to `.env` and fill in your values:
 
@@ -59,7 +59,7 @@ ALERT_TO_EMAIL=recipient@gmail.com
 `ALERT_EMAIL_PASSWORD` must be a **Gmail App Password** (not your account password).  
 Generate one at: Google Account → Security → 2-Step Verification → App Passwords.
 
-### 5 — Run
+### 5. Run
 
 **Web UI (recommended):**
 ```powershell
