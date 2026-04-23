@@ -1,0 +1,1236 @@
+\documentclass[12pt,a4paper]{report}
+
+% ── Encoding and font ─────────────────────────────────────────────────────────
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{mathptmx}
+
+% ── Page layout ───────────────────────────────────────────────────────────────
+\usepackage{geometry}
+\geometry{top=1in, bottom=1in, left=1.25in, right=1in}
+
+% ── Spacing ───────────────────────────────────────────────────────────────────
+\usepackage{setspace}
+\onehalfspacing
+\setlength{\parindent}{0.5in}
+\setlength{\parskip}{0pt}
+
+% ── Maths ─────────────────────────────────────────────────────────────────────
+\usepackage{amsmath, amssymb}
+
+% ── Graphics ──────────────────────────────────────────────────────────────────
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{subcaption}
+
+% ── Chapter-based figure and table numbering ──────────────────────────────────
+\usepackage{chngcntr}
+\counterwithin{figure}{chapter}
+\counterwithin{table}{chapter}
+
+% ── Heading formats ───────────────────────────────────────────────────────────
+\usepackage{titlesec}
+
+% Chapter: 16 pt, Bold, ALL CAPS, centred
+\titleformat{\chapter}[display]
+  {\centering\fontsize{16}{20}\selectfont\bfseries}
+  {CHAPTER \thechapter}
+  {4pt}
+  {\MakeUppercase}
+\titlespacing*{\chapter}{0pt}{-10pt}{24pt}
+
+% Section (main heading): 14 pt, Bold, ALL CAPS, justified
+\titleformat{\section}
+  {\fontsize{14}{17}\selectfont\bfseries\MakeUppercase}
+  {\thesection}{1em}{}
+\titlespacing*{\section}{0pt}{14pt}{6pt}
+
+% Subsection (sub-heading): 12 pt, not bold, sentence case, justified
+\titleformat{\subsection}
+  {\fontsize{12}{14.4}\selectfont\mdseries}
+  {\thesubsection}{1em}{}
+\titlespacing*{\subsection}{0pt}{10pt}{4pt}
+
+% Subsubsection: 12 pt, italic
+\titleformat{\subsubsection}
+  {\fontsize{12}{14.4}\selectfont\mdseries\itshape}
+  {\thesubsubsection}{1em}{}
+
+% ── Tables ────────────────────────────────────────────────────────────────────
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+
+% ── Algorithms ────────────────────────────────────────────────────────────────
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+% ── Source code listings ──────────────────────────────────────────────────────
+\usepackage{listingsutf8}
+\usepackage{xcolor}
+
+\definecolor{codebg}{HTML}{F7F7F7}
+\definecolor{codeframe}{HTML}{CCCCCC}
+\definecolor{codecomment}{HTML}{5C5C5C}
+\definecolor{codekeyword}{HTML}{0033B3}
+\definecolor{codestring}{HTML}{067D17}
+
+\lstset{
+  inputencoding=utf8,
+  extendedchars=true,
+  language=Python,
+  basicstyle=\ttfamily\fontsize{9}{11}\selectfont,
+  keywordstyle=\color{codekeyword}\bfseries,
+  commentstyle=\color{codecomment}\itshape,
+  stringstyle=\color{codestring},
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  stepnumber=1,
+  numbersep=8pt,
+  backgroundcolor=\color{codebg},
+  frame=single,
+  rulecolor=\color{codeframe},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=4,
+  showstringspaces=false,
+  captionpos=b,
+  xleftmargin=15pt,
+  framexleftmargin=15pt,
+  aboveskip=10pt,
+  belowskip=6pt,
+}
+
+% ── Hyperlinks ────────────────────────────────────────────────────────────────
+\usepackage[hidelinks]{hyperref}
+
+% ── Miscellaneous ─────────────────────────────────────────────────────────────
+\usepackage{microtype}
+\usepackage{enumitem}
+\setlist{noitemsep, topsep=4pt}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\begin{document}
+
+% =============================================================================
+% TITLE PAGE
+% =============================================================================
+\begin{titlepage}
+\centering
+\vspace*{0.6cm}
+
+{\fontsize{16}{20}\selectfont\bfseries A SYNOPSIS REPORT ON}\\[0.9cm]
+
+{\fontsize{16}{20}\selectfont\bfseries REAL-TIME WEAPON DETECTION WITH FACE RECOGNITION}\\[0.3cm]
+{\fontsize{12}{14.4}\selectfont (Integrating YOLO and InsightFace ArcFace for Intelligent Surveillance)}\\[1.0cm]
+
+{\fontsize{12}{14.4}\selectfont Submitted in partial fulfilment of the requirement for the award of the degree of}\\[0.5cm]
+
+{\fontsize{14}{17}\selectfont\bfseries BACHELOR OF TECHNOLOGY}\\[0.3cm]
+{\fontsize{12}{14.4}\selectfont IN}\\[0.3cm]
+{\fontsize{14}{17}\selectfont\bfseries COMPUTER SCIENCE AND ENGINEERING}\\[1.0cm]
+
+{\fontsize{12}{14.4}\selectfont\bfseries Submitted by}\\[0.6cm]
+
+\begin{tabular}{ll}
+Shivang Rawat           & \hspace{1cm} University Roll No: 2219650 \\[0.4cm]
+Sanya Sundriyal         & \hspace{1cm} University Roll No: 2219560 \\[0.4cm]
+Mohit Bhandari          & \hspace{1cm} University Roll No: 2219099 \\[0.4cm]
+Bhupendra Singh Pundir  & \hspace{1cm} University Roll No: 2218625 \\
+\end{tabular}\\[1.0cm]
+
+{\fontsize{12}{14.4}\selectfont Under the guidance of}\\[0.4cm]
+{\fontsize{12}{14.4}\selectfont\bfseries Dr. Bina Bhandari}\\
+{\fontsize{12}{14.4}\selectfont Assistant Professor}\\[0.6cm]
+{\fontsize{12}{14.4}\selectfont Project Group No: \underline{\hspace{2.5cm}}}\\[1.2cm]
+
+\vfill
+
+{\fontsize{12}{14.4}\selectfont\bfseries DEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING}\\[0.3cm]
+{\fontsize{12}{14.4}\selectfont\bfseries GRAPHIC ERA HILL UNIVERSITY (GEHU)}\\[0.2cm]
+{\fontsize{12}{14.4}\selectfont Dehradun, Uttarakhand}\\[0.4cm]
+{\fontsize{12}{14.4}\selectfont May, 2026}
+
+\end{titlepage}
+
+
+% =============================================================================
+% FRONT MATTER
+% =============================================================================
+\pagenumbering{roman}
+\setcounter{page}{2}
+
+% ── Candidate's Declaration ───────────────────────────────────────────────────
+\chapter*{Candidate's Declaration}
+\addcontentsline{toc}{chapter}{Candidate's Declaration}
+\thispagestyle{plain}
+
+I/We hereby certify that the work which is being presented in the project report entitled \textbf{``Real-Time Weapon Detection with Face Recognition''} in partial fulfillment of the requirements for the award of the Degree of Bachelor of Technology in Computer Science and Engineering in the Department of Computer Science and Engineering of the Graphic Era Hill University, Dehradun, has been carried out by the undersigned under the supervision of Dr. Bina Bhandari, Assistant Professor, Department of Computer Science and Engineering, Graphic Era Hill University, Dehradun.
+
+\vspace{2.5cm}
+
+\noindent
+\begin{tabular}{p{4.5cm} p{4cm} p{4cm}}
+\textbf{Name} & \textbf{University Roll No.} & \textbf{Signature} \\[1.2cm]
+Shivang Rawat           & 2219650 & \underline{\hspace{3cm}} \\[1.0cm]
+Sanya Sundriyal         & 2219560 & \underline{\hspace{3cm}} \\[1.0cm]
+Mohit Bhandari          & 2219099 & \underline{\hspace{3cm}} \\[1.0cm]
+Bhupendra Singh Pundir  & 2218625 & \underline{\hspace{3cm}} \\
+\end{tabular}
+
+\vspace{2cm}
+
+\noindent\textbf{Supervisor:}\\[1.0cm]
+\noindent
+\begin{tabular}{l}
+\underline{\hspace{5cm}} \\
+Dr. Bina Bhandari \\
+Assistant Professor \\
+Department of Computer Science and Engineering \\
+Graphic Era Hill University, Dehradun \\
+\end{tabular}
+
+\newpage
+
+% ── Abstract ──────────────────────────────────────────────────────────────────
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
+
+Security cameras are widely installed in banks, schools, and government buildings, but they mostly just record footage. A person still has to watch the feed to catch a threat. This project builds SafeGuard, a real-time weapon and face detection system that watches the camera automatically and raises an alarm when it detects an unknown person carrying a weapon.
+
+The system runs three detection models at the same time. A custom YOLO11s model called \texttt{best100.pt} was trained for 100 epochs to detect guns and knives, reaching a mean average precision of 0.92 at an IoU threshold of 0.5. YOLOv8n handles person detection using the COCO pretrained weights. Face recognition is handled by InsightFace buffalo\_s, which uses the SCRFD-500M face detector and the ArcFace \texttt{w600k\_mbf} model to generate 512-dimensional embeddings. An alarm fires only when a person is detected, the face is not recognized, and a weapon is present in the same frame. This three-way check keeps false alarms low.
+
+The whole system runs on Python 3.11, uses Flask for the web interface, and processes frames in parallel threads to stay fast on standard CPU hardware. Email alerts with a screenshot are sent through Gmail SMTP whenever a confirmed threat is detected.
+
+\vspace{0.3cm}
+\noindent\textbf{Keywords:} YOLO11s, InsightFace, ArcFace, SCRFD, weapon detection, face recognition, real-time surveillance, Flask, OpenCV, threat detection.
+
+\newpage
+
+% ── Table of Contents ─────────────────────────────────────────────────────────
+\tableofcontents
+\newpage
+
+% ── List of Figures ───────────────────────────────────────────────────────────
+\listoffigures
+\addcontentsline{toc}{chapter}{List of Figures}
+\newpage
+
+% ── List of Tables ────────────────────────────────────────────────────────────
+\listoftables
+\addcontentsline{toc}{chapter}{List of Tables}
+\newpage
+
+% =============================================================================
+% MAIN MATTER
+% =============================================================================
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+
+% =============================================================================
+\chapter{Introduction}
+% =============================================================================
+
+\section{Project background and motivation}
+
+Security surveillance has changed a lot over the past decade. Analog CCTV systems have been replaced by digital IP cameras that can record high-definition footage around the clock. Even with this improvement, most surveillance setups still work the same way: they record, and a human reviews the footage either live or after an incident. This reactive approach is a real problem. A security operator watching several screens at once will miss things, especially after long hours. Research shows that attention drops sharply within 20 minutes of continuous monitoring.
+
+The motivation behind SafeGuard is to take the human bottleneck out of threat detection. The system watches the camera feed and makes decisions automatically. The key design challenge was avoiding false alarms. A system that fires an alarm every time it sees a gun would be useless in environments where security guards carry firearms. SafeGuard solves this by combining three checks: the person in the frame must be unknown (not in the enrolled database), must be carrying a weapon, and must be an actual person rather than an object. All three conditions have to be true at the same time before any alert goes out.
+
+\section{Problem statement}
+
+The following are the specific problems that motivated this project.
+
+\textbf{Context-blind weapon detection:} Most existing weapon detection systems treat a weapon detection as an immediate threat, regardless of who is holding it. In places like banks where guards carry guns, this results in constant false alarms that operators start ignoring.
+
+\textbf{Slow human response:} When a security operator spots a threat on screen, there is still a delay before any action is taken. An automated system can trigger an alarm and send an email within seconds.
+
+\textbf{High false positive rates:} Simple motion detection systems trigger on shadows, animals, or lighting changes. Using three separate detection conditions together filters out most of these cases.
+
+\textbf{Broken embedding pipeline in older systems:} An earlier version of this project used separate libraries for face enrollment and recognition. The enrollment library and the inference library produced embeddings in different vector spaces, which meant all the similarity comparisons were wrong. The current version uses a single InsightFace object for both enrollment and live inference so the embeddings are always compatible.
+
+\section{Objectives of the project}
+
+The main goal is to build a working real-time threat detection system that can be deployed on standard hardware without requiring a GPU. The specific objectives are listed below.
+
+\begin{itemize}
+    \item Train a custom YOLO11s model on a labeled weapon dataset and deploy it for real-time inference.
+    \item Use YOLOv8n for person detection so that weapon detections without a person present do not trigger any alert.
+    \item Integrate InsightFace buffalo\_s for face recognition, using SCRFD-500M for detection and ArcFace \texttt{w600k\_mbf} for generating 512-dimensional embeddings.
+    \item Build the three-way threat condition shown below, where an alarm fires only when all three are true at the same time:
+\end{itemize}
+
+\[
+\text{Threat} = (\text{Person detected}) \land (\text{Face unknown}) \land (\text{Weapon detected})
+\]
+
+\begin{itemize}
+    \item Keep all settings in \texttt{config.py} backed by environment variables so nothing sensitive is hardcoded.
+    \item Put all detection logic in one shared module (\texttt{pipeline.py}) so the CLI mode and web mode use exactly the same code.
+    \item Build a Flask web interface for enrolling people and watching the live feed from a browser.
+    \item Send an automated email alert with a screenshot through Gmail SMTP when a threat is confirmed.
+\end{itemize}
+
+\section{Scope of the study}
+
+\textbf{Functional scope:} The system reads from a webcam or CCTV camera and runs person detection, face recognition, and weapon detection simultaneously on each frame. It works in two modes: a browser-based web interface and a local OpenCV window.
+
+\textbf{Technology choices:} Python 3.11 or later, PyTorch for YOLO inference, ONNX Runtime for InsightFace inference, OpenCV for camera handling, and Flask for the web server.
+
+\textbf{Constraints:} The system needs reasonable lighting for face recognition to work well. Detection works best at a range of 1 to 8 metres depending on camera quality. The enrolled person database should be kept below 50 people for optimal performance.
+
+\textbf{Not included:} Night-vision or thermal cameras, multi-camera distributed deployment, and training new models from scratch are all outside the scope of this project.
+
+\section{Applications}
+
+SafeGuard is designed for places where authorized and unauthorized armed individuals need to be distinguished:
+
+\begin{itemize}
+    \item Banks, ATMs, and financial offices
+    \item Schools, colleges, and university campuses
+    \item Government buildings and restricted facilities
+    \item Jewelry stores and high-value retail
+    \item Private residential properties with smart security setups
+\end{itemize}
+
+\section{Report organization}
+
+The rest of this report is structured as follows. Chapter 2 reviews the relevant literature on object detection and face recognition. Chapter 3 covers system requirements and feasibility. Chapter 4 describes the system architecture and data flow. Chapter 5 goes through the technology stack in detail. Chapter 6 documents each Python module. Chapter 7 covers the implementation phases including dataset, training, and integration. Chapter 8 presents the results and performance numbers. Chapter 9 gives the conclusion and future work. The source code is attached in the appendix.
+
+
+% =============================================================================
+\chapter{Literature Review}
+% =============================================================================
+
+\section{Overview of traditional surveillance systems}
+
+Security surveillance has traditionally relied on CCTV systems that record footage without analyzing it. Valera and Velastin (2005) reviewed intelligent surveillance systems and noted that the core limitation is the passive nature of recording: the footage is only examined after a crime occurs, not during it. Green (1999) found that human operators monitoring multiple screens lose about 45 percent of their detection accuracy after just 20 minutes. These findings point to a clear need for automated analysis.
+
+Modern research has moved toward active surveillance, where software analyzes the video in real time instead of waiting for a human to notice something wrong. This shift is what makes projects like SafeGuard possible.
+
+\section{Evolution of object detection models}
+
+\subsection{Convolutional neural networks}
+
+Before deep learning, object detection relied on handcrafted features such as Histogram of Oriented Gradients (HOG) and Scale-Invariant Feature Transform (SIFT). These features were fed into classifiers like Support Vector Machines to identify objects. The limitation was that the features had to be designed manually, and they did not generalize well to new conditions.
+
+Convolutional Neural Networks (CNNs) changed this by learning features directly from training images. A CNN stacks convolutional layers that extract edges and textures, pooling layers that reduce spatial dimensions, and fully connected layers for the final classification. The learned features generalize far better than handcrafted ones, which is why CNNs became the standard approach for all image-based detection tasks.
+
+\subsection{Comparison of two-stage and one-stage detectors}
+
+For object detection specifically, two main approaches emerged. Two-stage detectors like Faster R-CNN (Ren et al., 2015) first generate region proposals and then classify each region. This is accurate but slow, often under 5 FPS on CPU hardware, which makes it impractical for real-time video.
+
+One-stage detectors like YOLO (Redmon et al., 2016) treat detection as a single regression problem. The network looks at the whole image once and predicts bounding boxes and class probabilities in a single pass. This is much faster, and modern YOLO variants can run at 30 to 140 FPS depending on the hardware.
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|l|p{5cm}|p{5cm}|}
+\hline
+\textbf{Feature} & \textbf{R-CNN family (two-stage)} & \textbf{YOLO family (one-stage)} \\
+\hline
+Approach & Region proposals then classification & Single-pass regression \\
+\hline
+Speed & 0.5 to 5 FPS & 30 to 140+ FPS \\
+\hline
+Accuracy & Very high, including small objects & High, slightly weaker on tiny objects \\
+\hline
+Best used for & Medical imaging, static images & Real-time video, surveillance \\
+\hline
+\end{tabular}
+\caption{Comparison of two-stage and one-stage object detection}
+\label{tab:detector_comparison}
+\end{table}
+
+For this project, YOLO11s was chosen for weapon detection and YOLOv8n for person detection. Both models offer a good balance between speed and accuracy on CPU hardware.
+
+\section{Face recognition technologies}
+
+\subsection{Haar cascades and their limitations}
+
+Viola and Jones (2001) introduced Haar Cascade classifiers, which use predefined rectangular features to detect faces quickly. These classifiers work well when a face is roughly frontal and well lit, but they fail when the face is rotated more than about 30 degrees or partially covered. Haar cascades were used in the first version of this project but were replaced because they missed too many faces in real conditions.
+
+\subsection{SCRFD face detector}
+
+Guo et al. (2021) proposed SCRFD, which stands for Sample and Computation Redistribution for Efficient Face Detection. SCRFD is a CNN-based detector trained on large face datasets. The variant used here is SCRFD-500M, which has a computational budget of 500 million FLOPs. It handles faces rotated up to 90 degrees in either direction, partial occlusion, and low-light conditions. This makes it a much better fit for surveillance footage than Haar cascades.
+
+\subsection{ArcFace for face recognition}
+
+Deng et al. (2019) introduced ArcFace, which improved on FaceNet's triplet loss approach by introducing an additive angular margin to the softmax loss. The idea is to maximize the angular separation between different identities in the embedding space directly, rather than through pairwise triplet comparisons. The ArcFace loss is:
+
+\[
+L = -\frac{1}{N}\sum_{i=1}^{N} \log \frac{e^{s(\cos(\theta_{y_i} + m))}}{e^{s(\cos(\theta_{y_i} + m))} + \sum_{j \neq y_i} e^{s\cos\theta_j}}
+\]
+
+Here $\theta_{y_i}$ is the angle between the feature vector and the correct class weight, $m = 0.5$ is the margin, $s = 64$ is a scale factor, and $N$ is the batch size. The margin $m$ forces the network to produce tighter clusters per identity and wider gaps between identities.
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|l|p{5.5cm}|p{5.5cm}|}
+\hline
+\textbf{Property} & \textbf{FaceNet (triplet loss)} & \textbf{ArcFace (angular margin)} \\
+\hline
+Embedding size & 128 dimensions & 512 dimensions \\
+\hline
+Loss type & Triplet-based metric learning & Angular margin softmax \\
+\hline
+Training stability & Depends heavily on triplet mining & Stable, optimizes classes directly \\
+\hline
+Intra-class compactness & Moderate & High \\
+\hline
+Inter-class separation & Moderate & High \\
+\hline
+\end{tabular}
+\caption{FaceNet vs ArcFace comparison}
+\label{tab:face_comparison_lit}
+\end{table}
+
+The model used in this project is \texttt{w600k\_mbf.onnx}, trained on the WebFace600K dataset with a MobileNetV1 backbone.
+
+\section{Gap in existing work}
+
+Most weapon detection papers focus purely on improving YOLO accuracy for detecting guns and knives. They do not consider who is holding the weapon. Conversely, most face recognition papers focus on attendance systems or access control and do not combine recognition with threat detection.
+
+The gap is that no single system checks weapon presence, person presence, and identity together before deciding whether to alert. SafeGuard fills this gap with a three-way condition. A second technical gap was the embedding compatibility issue: previous systems used different libraries for enrollment and inference and got silently broken results. Using a single InsightFace object for both operations fixes this.
+
+
+% =============================================================================
+\chapter{System Requirements and Feasibility Analysis}
+% =============================================================================
+
+\section{Feasibility study}
+
+\subsection{Technical feasibility}
+
+All the core components needed for this system are freely available as open-source software. The YOLO models from Ultralytics, the InsightFace library, and the supporting Python packages are all well-maintained and well-documented. The system was designed to run on a standard CPU without requiring a dedicated GPU. By using YOLO nano and small variants and setting the InsightFace detection grid to 320 by 320 pixels, the system achieves 8 to 12 processed frames per second on typical office hardware, which is adequate for security monitoring.
+
+\subsection{Operational feasibility}
+
+The system reduces the workload on security staff by handling detection automatically. Staff only need to respond when an alert fires. The web interface makes enrollment and monitoring accessible to non-technical users since everything is done through a browser. No special hardware beyond a standard webcam and a computer is needed for deployment.
+
+\section{Hardware requirements}
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|p{3.5cm}|p{4.5cm}|p{4.5cm}|}
+\hline
+\textbf{Component} & \textbf{Minimum} & \textbf{Recommended} \\
+\hline
+Processor & Intel Core i5 (8th Gen) or AMD Ryzen 5 & Intel Core i7 (10th Gen) or higher \\
+\hline
+RAM & 8 GB DDR4 & 16 GB DDR4 \\
+\hline
+Storage & 256 GB SSD & 512 GB NVMe SSD \\
+\hline
+GPU & Integrated graphics & NVIDIA GTX 1650 (4 GB VRAM), optional \\
+\hline
+Camera & 720p webcam & 1080p webcam or HD CCTV feed \\
+\hline
+\end{tabular}
+\caption{Hardware requirements}
+\label{tab:hardware}
+\end{table}
+
+\section{Software requirements}
+
+The system runs on Windows 10/11 as the primary platform, with Linux Ubuntu 20.04 or later also supported. Python 3.11 or later is required. The table below lists all library dependencies.
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Category} & \textbf{Library} & \textbf{Minimum version} \\
+\hline
+Computer vision    & \texttt{opencv-python}      & 4.7.0 \\
+Object detection   & \texttt{ultralytics}        & 8.1.0 \\
+Object detection   & \texttt{torch, torchvision} & CPU or CUDA build \\
+Face pipeline      & \texttt{insightface}        & 0.7.3 \\
+Face inference     & \texttt{onnxruntime}        & 1.16.0 \\
+Web framework      & \texttt{flask}              & 2.0.0 \\
+Web utilities      & \texttt{Werkzeug}           & 2.0.0 \\
+Audio alerts       & \texttt{pygame}             & 2.1.0 \\
+Numerical          & \texttt{numpy}              & 1.24.0 \\
+Image I/O          & \texttt{Pillow}             & 9.0.0 \\
+Configuration      & \texttt{python-dotenv}      & 1.0.0 \\
+\hline
+\end{tabular}
+\caption{Software dependencies (from requirements.txt)}
+\label{tab:software_deps}
+\end{table}
+
+\section{Functional requirements}
+
+\subsection{Real-time weapon detection}
+
+The system must read frames from the camera in real time. The YOLO11s model \texttt{best100.pt} must detect objects of class gun or knife. A bounding box is drawn only when the confidence score is 0.6 or above.
+
+\subsection{Face identification and matching}
+
+The system must detect faces in each frame using SCRFD-500M running on a 320 by 320 pixel detection grid. For each detected face, a 512-dimensional ArcFace embedding is generated by \texttt{w600k\_mbf.onnx}. This embedding is compared to all stored embeddings using cosine similarity:
+
+\[
+\text{Similarity}(a, b) = \frac{a \cdot b}{\|a\| \cdot \|b\|}
+\]
+
+If the best match is below the threshold $\theta = 0.35$, the face is labeled Unknown. Otherwise it is labeled with the matched person's name and score.
+
+\subsection{Alert generation}
+
+An alarm is triggered only when all three conditions are true at the same time: a person is detected, that person's face is unknown, and a weapon is visible. On trigger, \texttt{alarm.wav} is played through the speakers. Once the alarm count reaches the configured threshold (default is 3), a screenshot is saved and emailed to the administrator via Gmail SMTP on port 465 with SSL. A cooldown of 5 seconds prevents the same event from triggering repeated alerts. The counter resets to zero after each email.
+
+\section{Non-functional requirements}
+
+\subsection{Performance}
+
+Each processed frame must complete within 250 ms on standard CPU hardware. The parallel threading model keeps wall-clock time to roughly the maximum of the face and weapon detection times plus the person detection time.
+
+\subsection{Security}
+
+Email credentials must never be hardcoded. They are loaded from environment variables \texttt{ALERT\_SENDER\_EMAIL}, \texttt{ALERT\_EMAIL\_PASSWORD}, and \texttt{ALERT\_TO\_EMAIL} via a \texttt{.env} file. File uploads are sanitized with \texttt{werkzeug.utils.secure\_filename()} and restricted to \texttt{.jpg}, \texttt{.jpeg}, and \texttt{.png} extensions with a 10 MB size cap.
+
+\subsection{Reliability}
+
+If no audio device is available, the alarm module logs a warning and continues without crashing. If email credentials are missing, the email module returns False silently. Both the web stream and CLI loop reload the enrolled faces from disk every 30 seconds so new enrollments take effect without restarting anything.
+
+
+% =============================================================================
+\chapter{System Architecture}
+% =============================================================================
+
+\section{High-level system design}
+
+The system is built in three layers that each have a clearly separate job.
+
+The first is the perception layer, which handles camera input. OpenCV opens the camera, sets the resolution to 640 by 480 pixels, and hands frames to the processing layer one at a time.
+
+The second is the cognitive layer, where the actual detection happens. Three models run in parallel. Thread A runs the InsightFace pipeline, which detects faces and generates ArcFace embeddings for identity matching. Thread B runs the YOLO11s weapon detector. The main calling thread runs YOLOv8n for person detection at the same time. All three threads write results to a shared dictionary protected by a lock.
+
+The third is the action layer, which handles outputs. If a threat is confirmed, the pygame library plays the alarm sound. An email with a screenshot is sent through Gmail SMTP. The annotated frame is either shown in an OpenCV window (CLI mode) or encoded as JPEG and yielded to the MJPEG stream (web mode).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{image_1.png}
+    \caption{High-level system architecture showing three layers}
+    \label{fig:high_level_design}
+\end{figure}
+
+\section{Data flow diagrams}
+
+\subsection{Level 0 DFD (context diagram)}
+
+At the highest level, the system takes a live video stream from the camera and produces three kinds of output: an email alert to the security administrator, an audio alarm in the local environment, and an annotated MJPEG video stream to the web dashboard.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{image_2.png}
+    \caption{Level 0 Data Flow Diagram (context diagram)}
+    \label{fig:level0_dfd}
+\end{figure}
+
+\subsection{Level 1 DFD (detailed processing)}
+
+Breaking the system down further, the processing steps are:
+
+\begin{enumerate}
+    \item Frame capture at 640 by 480 pixels from the camera.
+    \item Frame-skip gate: only every $N$th frame is sent for AI processing.
+    \item Three parallel processes: InsightFace SCRFD plus ArcFace on Thread A, YOLO11s on Thread B, and YOLOv8n on the main thread.
+    \item Results from all three are aggregated.
+    \item The three-way threat condition is evaluated.
+    \item If a threat is confirmed, alarm and email logic runs.
+    \item The annotated frame goes to the MJPEG stream or the OpenCV window.
+\end{enumerate}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{image_3.png}
+    \caption{Level 1 Data Flow Diagram showing parallel execution}
+    \label{fig:level1_dfd}
+\end{figure}
+
+\section{Threat detection algorithm}
+
+The alert condition can be written formally as:
+
+\[
+\text{Alert} = \exists\, P \;\land\; \exists\, W \;\land\; \max_i \; \text{CosSim}(E_\text{input}, E_i) < \theta
+\]
+
+where $P$ is a detected person with confidence above 0.5, $W$ is a detected weapon with confidence above 0.6, and $\theta = 0.35$ is the face similarity threshold.
+
+\begin{algorithm}[H]
+\caption{Three-way threat detection logic from \texttt{pipeline.py}}
+\begin{algorithmic}[1]
+\State \textbf{Input:} Frame $F$, known faces $D$, state $S$
+\State \textbf{Output:} annotated $F$, alert flags
+\State Spawn Thread A: $unknown \leftarrow \textsc{DetectFaces}(F, D, \theta=0.35)$
+\State Spawn Thread B: $weapon \leftarrow \textsc{DetectWeapons}(F, \tau=0.6)$
+\State $boxes \leftarrow \textsc{DetectPersons}(F, \tau=0.5)$
+\State $person \leftarrow (|boxes| > 0)$
+\State Join Thread A; Join Thread B
+\State Draw yellow boxes for each person bounding box on $F$
+\State $threat \leftarrow person \land unknown \land weapon$
+\If{$threat$}
+    \If{not $S.alarm\_playing$ or $(now - S.last\_alarm\_time) > T_{cool}$}
+        \State Play alarm, increment $S.alarm\_count$, set $S.alarm\_playing$
+        \If{$S.alarm\_count \geq T_{email}$}
+            \State Save screenshot, send email, reset $S.alarm\_count$
+        \EndIf
+    \EndIf
+\ElsIf{$S.alarm\_playing$}
+    \State Stop alarm, set $S.alarm\_playing \leftarrow \text{False}$
+\EndIf
+\end{algorithmic}
+\end{algorithm}
+
+\section{System process flowchart}
+
+The flowchart in Figure \ref{fig:system_process_flowchart} shows the full execution cycle from when the camera opens to when the session ends.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{image_4.png}
+    \caption{System process flowchart}
+    \label{fig:system_process_flowchart}
+\end{figure}
+
+\section{Use case diagram}
+
+\subsection{Actors}
+
+The system has three actors. The administrator manages enrolled persons and receives alerts. The surveillance camera provides the video stream. The Gmail SMTP server delivers email notifications.
+
+\subsection{Use cases}
+
+The four main use cases are: managing the safe persons list (add or delete via the web form), monitoring the live feed through the browser, detecting a threat through the three-way condition, and receiving an alert notification as an audio alarm and email.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{image_5.png}
+    \caption{UML Use Case Diagram}
+    \label{fig:use_case_diagram}
+\end{figure}
+
+
+% =============================================================================
+\chapter{Technology Stack and Development Environment}
+% =============================================================================
+
+\section{Python 3.11+}
+
+Python was chosen for this project because nearly all the required libraries (PyTorch, OpenCV, InsightFace, Flask) have first-class Python support. Python 3.11 introduced performance improvements of around 10 to 60 percent over older versions, and the project has been tested on Python 3.13 as well.
+
+One important point about Python's threading in this context: both InsightFace (which uses ONNX Runtime written in C++) and YOLO (which uses PyTorch written in C++) release the Global Interpreter Lock (GIL) during inference. This means the face detection and weapon detection threads actually run in parallel on the CPU rather than alternating, which is what makes the threading speedup real.
+
+\section{OpenCV}
+
+OpenCV handles camera access and all the drawing operations. The camera is opened with \texttt{cv2.VideoCapture(index)}, where the index comes from the \texttt{CAMERA\_INDEX} setting (default is 2). Frames are set to 640 by 480 pixels. Bounding boxes are drawn with \texttt{cv2.rectangle()} and labels with \texttt{cv2.putText()} directly on the frame buffer before it is encoded or displayed.
+
+\section{PyTorch and YOLO models}
+
+\subsection{YOLO11s weapon detector}
+
+\texttt{best100.pt} is a YOLO11s model fine-tuned on a custom weapon dataset. YOLO11s uses an anchor-free detection head, which means there are no anchor box hyperparameters to tune. The model detects two classes: gun and knife. These class names come from \texttt{coco2.txt}. The confidence threshold for a valid detection is 0.6.
+
+\subsection{YOLOv8n person detector}
+
+\texttt{yolov8n.pt} is the pretrained COCO nano variant of YOLOv8. Only class 0 (person) detections are used; all other classes are discarded. This model replaced an earlier YOLOv5su model and is roughly twice as fast at comparable accuracy.
+
+\section{InsightFace for face recognition}
+
+\subsection{Why InsightFace replaced the previous setup}
+
+The first version of this project used \texttt{keras-facenet} for inference and \texttt{deepface} with the Facenet512 model for enrollment. These two libraries use different model architectures and different preprocessing pipelines, which means the enrollment embeddings and the inference embeddings live in completely different vector spaces. Every cosine similarity comparison was therefore meaningless, even though the code ran without errors. Switching to InsightFace fixes this because a single \texttt{FaceAnalysis} object handles both enrollment and live inference using exactly the same models.
+
+\subsection{The buffalo\_s model pack}
+
+InsightFace downloads the buffalo\_s pack on first run. It is about 85 MB and goes into \texttt{\textasciitilde/.insightface/models/}. The pack has five ONNX models:
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{File} & \textbf{Architecture} & \textbf{What it does} \\
+\hline
+\texttt{det\_500m.onnx}  & SCRFD-500M            & Detects face bounding boxes \\
+\texttt{w600k\_mbf.onnx} & ArcFace + MobileNetV1 & Generates 512-d embeddings \\
+\texttt{1k3d68.onnx}     & 3DDFA-v2 variant      & 3D 68-point landmark detection \\
+\texttt{2d106det.onnx}   & 2D landmark model     & 2D 106-point landmark detection \\
+\texttt{genderage.onnx}  & ShuffleNet            & Gender and age estimation \\
+\hline
+\end{tabular}
+\caption{InsightFace buffalo\_s model pack contents}
+\label{tab:insightface_models}
+\end{table}
+
+The landmark models are used internally to align the face crop before passing it to ArcFace. Alignment makes sure the eyes are horizontal in the 112 by 112 pixel crop, which significantly improves recognition across different head angles.
+
+\subsection{Cosine similarity and the normalization issue}
+
+The \texttt{w600k\_mbf.onnx} model outputs vectors with a norm of around 20 to 30 on some ONNX Runtime versions. They are not unit-normalized. This is fine for cosine similarity because the formula divides by both norms explicitly:
+
+\[
+\text{CosSim}(a, b) = \frac{a \cdot b}{\|a\| \cdot \|b\|}
+\]
+
+The result is the same regardless of the scale of the vectors. Because of this, the \texttt{utils.py} module does not filter embeddings by their L2-norm. An older version of the code had a check \texttt{if norm > 2.0: return \{\}} which was rejecting valid ArcFace embeddings and causing all faces to show as Unknown. That check has been removed.
+
+\subsection{Runtime face recognition steps}
+
+\begin{enumerate}
+    \item \texttt{face\_app.get(frame)} runs SCRFD-500M to find faces and the landmark models to align them.
+    \item The aligned 112 by 112 crop goes into \texttt{w600k\_mbf.onnx}, which outputs a 512-d vector.
+    \item Cosine similarity is computed between this vector and every stored enrollment embedding.
+    \item If the best score is 0.35 or above, the face is labeled with the matched name in a green box. Otherwise it is labeled Unknown in a red box.
+\end{enumerate}
+
+\section{Flask web framework}
+
+The live video is delivered through an MJPEG stream using the \texttt{multipart/x-mixed-replace} protocol. The browser-side \texttt{<img>} tag consumes this stream natively without needing a JavaScript video player. Face enrollment runs in a background daemon thread so the web response returns immediately rather than waiting for embedding generation to finish.
+
+\section{Configuration with python-dotenv}
+
+All tunable constants live in \texttt{config.py}. They are loaded from a \texttt{.env} file at startup using \texttt{python-dotenv}. Nothing is hardcoded. The \texttt{.env} file is excluded from version control. Table \ref{tab:config_vars} lists all available settings.
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|l|c|p{6cm}|}
+\hline
+\textbf{Environment variable} & \textbf{Default} & \textbf{Description} \\
+\hline
+\texttt{CAMERA\_INDEX}            & 2     & OpenCV camera device index \\
+\texttt{FACE\_THRESHOLD}          & 0.35  & Minimum cosine similarity to accept a face as known \\
+\texttt{WEAPON\_THRESHOLD}        & 0.6   & Minimum YOLO confidence for a weapon detection \\
+\texttt{PERSON\_THRESHOLD}        & 0.5   & Minimum YOLO confidence for a person detection \\
+\texttt{ALARM\_COOLDOWN}          & 5     & Seconds between repeated alarm triggers \\
+\texttt{ALARM\_EMAIL\_THRESHOLD}  & 3     & Alarm count before an email is sent \\
+\texttt{FRAME\_SKIP}              & 3     & Process every $N$th frame only \\
+\texttt{ALERT\_SENDER\_EMAIL}     & none  & Gmail sender address \\
+\texttt{ALERT\_EMAIL\_PASSWORD}   & none  & Gmail App Password (16-character token) \\
+\texttt{ALERT\_TO\_EMAIL}         & none  & Recipient email address \\
+\hline
+\end{tabular}
+\caption{Environment variable settings in \texttt{config.py}}
+\label{tab:config_vars}
+\end{table}
+
+\section{Email alerts via SMTP}
+
+Email alerts are sent through \texttt{smtp.gmail.com} on port 465 using \texttt{SMTP\_SSL}. The message is MIME multipart: a plain text body describing the threat plus a \texttt{screenshot.png} attachment. A standard Gmail account password does not work here; a 16-character App Password must be generated from the Google account security settings.
+
+
+% =============================================================================
+\chapter{Module Description}
+% =============================================================================
+
+\section{config.py}
+
+This file holds every constant the system uses. It calls \texttt{load\_dotenv()} at the top to pull values from the \texttt{.env} file, then reads each one with \texttt{os.getenv()} using a sensible default if the variable is not set. It also calls \texttt{logging.basicConfig()} at import time so every module that imports \texttt{config} gets consistent log formatting automatically. All other modules get their thresholds, paths, and credentials from here.
+
+\section{pipeline.py}
+
+This is the central detection module. Before this file existed, the same detection loop was copy-pasted in both \texttt{main.py} and \texttt{app.py}. Any bug had to be fixed in two places. Now both entry points call functions defined here.
+
+\subsection{DetectionState dataclass}
+
+A small dataclass that tracks alarm state across frames within a single camera session. It has three fields:
+
+\begin{itemize}
+    \item \texttt{alarm\_playing}: True if the alarm is currently sounding.
+    \item \texttt{last\_alarm\_time}: Unix timestamp of the most recent alarm trigger.
+    \item \texttt{alarm\_count}: How many times the alarm has fired since the last email was sent.
+\end{itemize}
+
+\subsection{process\_frame()}
+
+This function takes one frame, runs all three detectors, evaluates the threat condition, and handles the alarm and email logic. Face and weapon detection run in daemon threads; person detection runs on the calling thread. The function joins both threads before evaluating the threat condition, so the results are all available. It returns a tuple of three booleans: person detected, unknown face detected, weapon detected.
+
+\subsection{detect\_objects\_in\_realtime()}
+
+This is the CLI camera loop. It opens the camera, loads enrolled faces, and calls \texttt{process\_frame()} in a loop, showing the result in an OpenCV window. Enrolled faces are reloaded from disk every 30 seconds so new enrollments take effect without restarting. Press q to quit.
+
+\subsection{generate\_frames()}
+
+This is the MJPEG generator for Flask. It does the same detection loop as the CLI version but instead of displaying a window, it encodes each frame as JPEG and yields it as a multipart chunk. It also reloads enrolled faces every 30 seconds.
+
+\section{face\_detection.py}
+
+\subsection{InsightFace singleton}
+
+The \texttt{FaceAnalysis} object is created once and stored as a module-level variable. The first call to \texttt{get\_face\_app()} creates it; subsequent calls return the same object. This matters because \texttt{app.py} uses the same function when generating enrollment embeddings. Since both the enrollment path and the live detection path use the exact same object, the embeddings are always in the same vector space.
+
+The object is configured with \texttt{det\_size=(320, 320)}, which is faster than the default 640 by 640 grid and still detects faces as small as about 20 by 20 pixels in a 640 by 480 frame.
+
+\subsection{detect\_faces()}
+
+For each frame, \texttt{app.get(frame)} returns a list of detected faces. Each face object has a bounding box and a 512-d embedding from ArcFace. For each detected face, cosine similarity is computed against every stored enrollment embedding. If the best match is 0.35 or above, the face gets a green box with the person's name. If not, it gets a red box labeled Unknown, and \texttt{unknown\_detected} is set to True.
+
+\section{weapon\_detection.py}
+
+The YOLO model and class list are loaded once when the module is first imported. Per-frame inference calls \texttt{yolo\_model(frame, verbose=False)} to suppress console output. For each detection result, the code checks two things: the confidence must be at least 0.6, and the class name (read from \texttt{coco2.txt}) must contain the substring ``gun'' or ``knife''. This substring check handles class name variations like ``handgun'' or ``assault\_gun'' automatically. Matching detections get a red bounding box.
+
+\section{person\_detection.py}
+
+This module uses \texttt{yolov8n.pt} pretrained on COCO. Only class 0 (person) detections with confidence at or above 0.5 are kept. The function returns a list of integer bounding boxes but does not draw anything on the frame. Drawing the yellow boxes is handled by \texttt{pipeline.py} so that the color coding is consistent regardless of which module did the detection.
+
+\section{main.py}
+
+The CLI entry point imports \texttt{detect\_objects\_in\_realtime} from \texttt{pipeline.py} and calls it. That is the entire file beyond the module docstring. All detection logic is in \texttt{pipeline.py}.
+
+\section{alarm.py}
+
+The pygame mixer is initialized lazily on the first call to \texttt{start\_alarm()}. If initialization fails, for example on a server with no audio device, the exception is caught and a warning is logged. The system continues running normally without sound. The alarm plays with a maximum duration of 5 seconds per trigger, set through \texttt{maxtime=5000} in the pygame play call.
+
+\section{email\_sender.py}
+
+This module reads the sender address, App Password, and recipient address from \texttt{config.py}. If any of these are missing, it logs a warning and returns False without raising an exception. The email is sent as a MIME multipart message with a plain text body and a \texttt{screenshot.png} attachment, connected via \texttt{smtplib.SMTP\_SSL} to \texttt{smtp.gmail.com} on port 465.
+
+\section{utils.py}
+
+\texttt{load\_known\_faces()} loads the \texttt{.npy} embeddings file and validates the contents. It returns an empty dict if the file does not exist, cannot be parsed, or does not contain a Python dict. It checks that every stored embedding has exactly 512 dimensions so that legacy 128-dimensional FaceNet embeddings are rejected with a clear error message. It does not check the L2-norm because InsightFace's \texttt{w600k\_mbf.onnx} outputs vectors with norm around 20 to 30 on some ONNX Runtime versions, and cosine similarity handles this correctly without normalization.
+
+\section{app.py}
+
+The Flask application provides six routes:
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|l|l|p{7cm}|}
+\hline
+\textbf{Route} & \textbf{Method} & \textbf{Description} \\
+\hline
+\texttt{/}                  & GET      & Home page with navigation cards \\
+\texttt{/detection}         & GET      & Live stream viewer with Start/Stop buttons \\
+\texttt{/video\_feed}       & GET      & MJPEG stream read by the browser \texttt{<img>} tag \\
+\texttt{/stop\_stream}      & GET      & Stops the active MJPEG stream \\
+\texttt{/safepeople}        & GET      & Lists all currently enrolled persons \\
+\texttt{/create\_encoding}  & GET/POST & Add or delete a person from the database \\
+\hline
+\end{tabular}
+\caption{Flask web routes in \texttt{app.py}}
+\label{tab:flask_routes}
+\end{table}
+
+When a person is added, the uploaded images are saved to \texttt{dataset/\{name\}/}. A background daemon thread then runs embedding generation, calling \texttt{face\_app.get(img)} for each image, averaging the results into a centroid embedding, and saving the dictionary to \texttt{facenet\_embeddings1.npy} under a threading lock. The HTTP response returns immediately without waiting for this background work to finish.
+
+
+% =============================================================================
+\chapter{Implementation Details}
+% =============================================================================
+
+\section{Phase 1: Dataset collection and preprocessing}
+
+\subsection{Image annotation}
+
+A custom dataset was collected because public datasets like COCO have weapon classes that are too broad for this purpose. Over 2,000 images were annotated manually using LabelImg. The labeling strategy prioritized difficult cases: weapons held at unusual angles, under poor lighting, or partially obscured. Class balance between gun and knife was maintained throughout.
+
+Annotations follow the YOLO format where each line in the label file contains the class ID followed by the normalized center coordinates and dimensions of the bounding box.
+
+\subsection{Data augmentation}
+
+The YOLO11s training pipeline applied several augmentations automatically. Mosaic augmentation combines four images into one during training, which helps the model learn to detect objects at multiple scales. HSV color augmentation randomly shifts hue, saturation, and brightness. Spatial augmentation includes random scaling up to 50 percent, translation up to 10 percent, and horizontal flipping with 50 percent probability.
+
+\section{Phase 2: Model training}
+
+\subsection{Training setup}
+
+YOLO11s was selected over the nano variant because small weapons like knives are harder to detect and benefit from the additional capacity of the small model. Training started from COCO pretrained weights and ran for 100 epochs with a batch size of 16. The optimizer was SGD with momentum 0.937 and an initial learning rate of 0.01 with cosine annealing.
+
+\subsection{Loss function}
+
+\[
+\mathcal{L} = \lambda_{box}\,\mathcal{L}_{box} + \lambda_{cls}\,\mathcal{L}_{cls} + \lambda_{dfl}\,\mathcal{L}_{dfl}
+\]
+
+The three loss terms are CIoU box regression loss, Binary Cross-Entropy classification loss, and Distribution Focal Loss for precise bounding box localization. The trained model is saved as \texttt{best100.pt} and is the only file needed for deployment.
+
+\section{Phase 3: Building the enrollment database}
+
+\subsection{Enrollment pipeline}
+
+Instead of storing face photos in the runtime system, only 512-dimensional embeddings are stored. This saves space and also means raw face images are not kept in memory during detection. The enrollment process works as follows:
+
+\begin{enumerate}
+    \item The administrator uploads 3 to 8 photos of a person through the \texttt{/create\_encoding} page. Photos are saved to \texttt{dataset/\{name\}/}.
+    \item For each photo, \texttt{face\_app.get(img)} detects the face and generates an ArcFace embedding.
+    \item All embeddings for the same person are averaged to produce a centroid:
+    \[
+    \bar{e} = \frac{1}{K} \sum_{k=1}^{K} e_k
+    \]
+    \item The centroid is stored in \texttt{facenet\_embeddings1.npy} under the person's name.
+\end{enumerate}
+
+\subsection{Live matching}
+
+During detection, the live ArcFace embedding is compared against every centroid using cosine similarity. If the highest score is at or above 0.35, the person is considered identified. Below 0.35, the face is Unknown.
+
+\section{Phase 4: Integration}
+
+\subsection{Why pipeline.py exists}
+
+Before refactoring, the same 120-line detection loop existed separately in both \texttt{main.py} and \texttt{app.py}. A bug fix or improvement had to be applied twice. Moving all detection logic into \texttt{pipeline.py} means both entry points call the same code. \texttt{main.py} calls \texttt{detect\_objects\_in\_realtime()} and \texttt{app.py} calls \texttt{generate\_frames()}; both functions internally call \texttt{process\_frame()}.
+
+\subsection{Threading model}
+
+Within each call to \texttt{process\_frame()}, face detection and weapon detection each run on a separate daemon thread. Person detection runs on the calling thread at the same time. Wall-clock time is approximately the maximum of the face and weapon detection times plus the person detection time, which is about 180 to 230 ms on a standard CPU compared to around 300 to 350 ms if the three were run sequentially.
+
+\subsection{Frame skip}
+
+With \texttt{FRAME\_SKIP=3} and a 30 FPS camera, the AI pipeline processes roughly 10 frames per second. The camera still reads at 30 FPS so the display is smooth, but only one in three frames goes through the detection models. This reduces CPU load to about one third with minimal impact on detection, since real threats last several seconds and will be caught on the next processed frame.
+
+\section{Phase 5: Deployment}
+
+\subsection{Web interface}
+
+The web interface is built with Flask and uses Tailwind CSS for styling. The main pages are the live detection viewer at \texttt{/detection}, the enrollment form at \texttt{/create\_encoding}, and the enrolled persons list at \texttt{/safepeople}. The live feed appears in a regular HTML \texttt{<img>} tag that consumes the MJPEG stream from \texttt{/video\_feed}.
+
+\subsection{Bounding box color scheme}
+
+A consistent color scheme is used across all modules:
+
+\begin{itemize}
+    \item Green box: known, enrolled person (face similarity at or above 0.35)
+    \item Red box on a face: unknown person (face similarity below 0.35)
+    \item Red box on an object: detected gun or knife
+    \item Yellow box: detected person from YOLOv8n
+\end{itemize}
+
+
+% =============================================================================
+\chapter{Results and Performance Analysis}
+% =============================================================================
+
+\section{Evaluation metrics}
+
+The weapon detection model is evaluated using precision, recall, F1-score, and mean average precision. These metrics are defined as follows:
+
+\[
+\text{Precision} = \frac{TP}{TP + FP}, \qquad
+\text{Recall} = \frac{TP}{TP + FN}, \qquad
+\text{F1} = 2 \cdot \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}}
+\]
+
+Mean Average Precision at IoU threshold 0.5 (mAP@0.5) is computed as the area under the Precision-Recall curve, averaged across all classes.
+
+\subsection{Weapon detection results}
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|l|c|c|c|c|c|}
+\hline
+\textbf{Class} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} & \textbf{mAP@0.5} & \textbf{mAP@0.5:0.95} \\
+\hline
+Gun            & 0.94 & 0.91 & 0.92 & 0.932 & 0.731 \\
+Knife          & 0.90 & 0.89 & 0.89 & 0.908 & 0.706 \\
+\hline
+\textbf{Overall} & \textbf{0.92} & \textbf{0.90} & \textbf{0.91} & \textbf{0.920} & \textbf{0.718} \\
+\hline
+\end{tabular}
+\caption{YOLO11s weapon detection results on the validation set after 100 epochs}
+\label{tab:weapon_perf}
+\end{table}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.78\textwidth]{PR_curve.png}
+    \caption{Precision-Recall Curve for YOLO11s \texttt{best100.pt}}
+    \label{fig:pr_curve}
+\end{figure}
+
+The PR curve in Figure \ref{fig:pr_curve} shows that precision stays above 0.85 until recall exceeds 0.90 for the combined all-class curve. The confidence threshold of 0.60 was chosen at this point: it keeps false positives low while still catching most real detections.
+
+\subsection{F1-score and recall curves}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.78\textwidth]{F1_curve.png}
+    \caption{F1-Score vs Confidence Threshold for YOLO11s \texttt{best100.pt}}
+    \label{fig:f1_curve}
+\end{figure}
+
+The F1 curve peaks at about 0.91 near a confidence threshold of 0.44. The deployed threshold of 0.60 is marked in Figure \ref{fig:f1_curve}. At that point F1 is slightly below peak, which is the expected trade-off when prioritizing precision in a security application.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.78\textwidth]{R_curve.png}
+    \caption{Recall vs Confidence Threshold for YOLO11s \texttt{best100.pt}}
+    \label{fig:r_curve}
+\end{figure}
+
+At the deployed threshold of 0.60, recall is above 0.88 for both classes, meaning fewer than 12 percent of actual weapon instances are missed.
+
+\section{Confusion matrix}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.60\textwidth]{confusion_matrix.png}
+    \caption{Normalised confusion matrix for the weapon detector}
+    \label{fig:conf_matrix}
+\end{figure}
+
+The confusion matrix in Figure \ref{fig:conf_matrix} shows strong diagonal values of 0.91 for gun, 0.89 for knife, and 0.95 for background. Cross-class confusion between gun and knife is at most 4 percent, and background false positive rates are under 3 percent.
+
+\section{Training and validation curves}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{results.png}
+    \caption{Training dashboard showing loss curves and validation metrics over 100 epochs}
+    \label{fig:training_results}
+\end{figure}
+
+The training dashboard in Figure \ref{fig:training_results} shows all ten tracked metrics over 100 epochs. Box loss dropped from 0.95 at epoch 1 to 0.038 at epoch 100. Classification loss dropped from 2.1 to 0.32. Validation losses follow training closely throughout, which shows there is no significant overfitting. The mAP@0.5 metric leveled off around epoch 80 and held steady at 0.92 for the remaining epochs.
+
+\section{Training batch visualizations}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.32\textwidth}
+        \includegraphics[width=\textwidth]{train_batch0.jpg}
+        \caption{Train Batch 0}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.32\textwidth}
+        \includegraphics[width=\textwidth]{train_batch1.jpg}
+        \caption{Train Batch 1}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.32\textwidth}
+        \includegraphics[width=\textwidth]{train_batch2.jpg}
+        \caption{Train Batch 2}
+    \end{subfigure}
+    \caption{Sample training batches with ground truth bounding boxes}
+    \label{fig:train_batches}
+\end{figure}
+
+\section{Validation predictions vs ground truth}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{val_batch0_pred.jpg}
+        \caption{Model predictions with confidence scores}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{val_batch1_labels.jpg}
+        \caption{Ground truth labels}
+    \end{subfigure}
+    \caption{Validation batch predictions compared to ground truth}
+    \label{fig:val_results}
+\end{figure}
+
+The predicted boxes in Figure \ref{fig:val_results} closely match the ground truth positions. Confidence scores for correct weapon detections are consistently above 0.72.
+
+\section{System throughput}
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|l|l|c|}
+\hline
+\textbf{Component} & \textbf{Thread} & \textbf{Approximate time (CPU)} \\
+\hline
+Frame capture and resize                     & Main thread   & 5 ms \\
+InsightFace SCRFD-500M face detection        & Thread A      & 50 to 80 ms \\
+ArcFace \texttt{w600k\_mbf} embedding        & Thread A      & 70 to 100 ms \\
+YOLO11s weapon detection                     & Thread B      & 80 to 120 ms \\
+YOLOv8n person detection                     & Main thread   & 40 to 60 ms \\
+\hline
+Wall-clock per frame (parallel threads)      & combined      & 180 to 230 ms \\
+Sequential baseline (estimated)              & single thread & 300 to 350 ms \\
+\hline
+Effective frames processed per second (FRAME\_SKIP=3) & & 8 to 10 \\
+\hline
+\end{tabular}
+\caption{Per-component latency and overall throughput on CPU hardware}
+\label{tab:throughput}
+\end{table}
+
+\section{Face recognition results}
+
+\subsection{Cosine similarity distributions}
+
+Testing with the enrolled person database gave the following cosine similarity ranges:
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|l|c|}
+\hline
+\textbf{Scenario} & \textbf{Cosine similarity range} \\
+\hline
+Same person, frontal, good lighting            & 0.45 to 0.75 \\
+Same person, different angle or lighting       & 0.28 to 0.50 \\
+Two different people                           & -0.10 to 0.20 \\
+\hline
+\end{tabular}
+\caption{Observed cosine similarity ranges for enrolled persons}
+\label{tab:cosim_dist}
+\end{table}
+
+The threshold of 0.35 sits clearly between the same-person and different-person distributions. The gap is about 0.08 to 0.15 wide, which gives good tolerance for small variations in lighting or pose.
+
+\subsection{Comparison with previous pipeline}
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|l|c|c|}
+\hline
+\textbf{Condition} & \textbf{Haar + FaceNet (old)} & \textbf{SCRFD + ArcFace (current)} \\
+\hline
+Frontal face, good light                  & Works       & Works \\
+Yaw rotation up to 30 degrees             & Works       & Works \\
+Yaw rotation 30 to 60 degrees             & Fails       & Works \\
+Yaw rotation 60 to 90 degrees             & Fails       & Works \\
+Partial occlusion up to 30 percent        & Fails       & Works \\
+Low light around 20 lux                   & Partial     & Works \\
+Consistent embedding space                & Broken      & Guaranteed \\
+\hline
+\end{tabular}
+\caption{Face recognition capability comparison between old and current pipeline}
+\label{tab:face_compare}
+\end{table}
+
+\section{Threat logic validation}
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\textbf{Scenario} & \textbf{Person} & \textbf{Unknown face} & \textbf{Weapon} & \textbf{Alarm} \\
+\hline
+Authorized guard with gun    & Yes & No  & Yes & No  \\
+Unknown person, no weapon    & Yes & Yes & No  & No  \\
+Empty room, gun on table     & No  & N/A & Yes & No  \\
+Unknown person with knife    & Yes & Yes & Yes & Yes \\
+Known person with knife      & Yes & No  & Yes & No  \\
+\hline
+\end{tabular}
+\caption{Threat logic truth table showing alarm triggers for different scenarios}
+\label{tab:threat_logic}
+\end{table}
+
+Table \ref{tab:threat_logic} confirms the most important property of the system: authorized personnel with weapons do not trigger alarms, and weapons present without a person do not trigger alarms.
+
+\section{Limitations}
+
+\begin{itemize}
+    \item Detection gets slower as more faces appear in the frame simultaneously since ArcFace runs per-face.
+    \item Face recognition degrades below about 20 lux of ambient light.
+    \item The current design handles one camera at a time; multi-camera setups would need separate processes.
+    \item With FRAME\_SKIP set to 3, a weapon that appears in a skipped frame could be missed for up to about 300 ms.
+    \item The system has only been tested with enrollment databases under 50 people.
+\end{itemize}
+
+
+% =============================================================================
+\chapter{Conclusion and Future Scope}
+% =============================================================================
+
+\section{Conclusion}
+
+SafeGuard achieves its core design goal: an automated system that can watch a camera feed and raise an alert only when an unknown person is carrying a weapon. The following outcomes were reached during development.
+
+The face recognition pipeline was rebuilt from scratch after discovering that the old FaceNet setup was silently producing wrong results due to incompatible embedding spaces. Switching to InsightFace buffalo\_s fixed the root cause rather than patching around it. SCRFD-500M handles face detection at angles and under conditions where the previous Haar cascade failed completely.
+
+The three-way threat condition proved effective at reducing false positives. In testing, authorized guards carrying weapons did not trigger alarms, and weapon detections without a confirmed person in frame were also ignored.
+
+The parallel threading model achieves roughly 1.5 times the throughput of a sequential approach on CPU hardware, bringing the effective rate to 8 to 10 processed frames per second with FRAME\_SKIP set to 3. This is adequate for real security monitoring where threats persist for seconds rather than milliseconds.
+
+The codebase is clean and maintainable. All detection logic lives in \texttt{pipeline.py}, all configuration in \texttt{config.py}, and both the CLI and web modes share the same code paths. Credentials are loaded from environment variables and never hardcoded.
+
+\section{Future scope}
+
+\begin{enumerate}
+    \item A single YOLO model that detects both persons and weapons together would reduce the per-frame AI time by about one model call, improving throughput by roughly 30 to 40 percent.
+
+    \item Enabling CUDA for both PyTorch and ONNX Runtime would cut per-frame latency from around 200 ms to around 20 to 30 ms, which would make full 30 FPS detection practical.
+
+    \item Multi-camera support could be added by running a separate detection process per camera and correlating alerts through a shared database.
+
+    \item Body pose estimation models could be added to catch concealed weapons based on posture even when no weapon is directly visible.
+
+    \item The ArcFace embeddings are already suited for person re-identification. In a multi-camera setup, the same embedding vectors could be used to track a person across different camera views without re-running enrollment.
+
+    \item Packaging the system as a Docker container for deployment on edge devices like NVIDIA Jetson would make it easier to install at new locations.
+\end{enumerate}
+
+
+% =============================================================================
+% REFERENCES
+% =============================================================================
+\chapter*{References}
+\addcontentsline{toc}{chapter}{References}
+
+\begin{enumerate}
+    \item Deng, J., Guo, J., Xue, N., and Zafeiriou, S. (2019). ArcFace: Additive Angular Margin Loss for Deep Face Recognition. \textit{Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition}, pp. 4690-4699.
+
+    \item Guo, J., Deng, J., Lattas, A., and Zafeiriou, S. (2021). Sample and Computation Redistribution for Efficient Face Detection. arXiv preprint arXiv:2105.04714.
+
+    \item Redmon, J., Divvala, S., Girshick, R., and Farhadi, A. (2016). You Only Look Once: Unified, Real-Time Object Detection. \textit{Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition}, pp. 779-788.
+
+    \item Ren, S., He, K., Girshick, R., and Sun, J. (2015). Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks. \textit{Advances in Neural Information Processing Systems}, Vol. 28.
+
+    \item Schroff, F., Kalenichenko, D., and Philbin, J. (2015). FaceNet: A Unified Embedding for Face Recognition and Clustering. \textit{Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition}, pp. 815-823.
+
+    \item Viola, P. and Jones, M. (2001). Rapid Object Detection Using a Boosted Cascade of Simple Features. \textit{Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition}, pp. I-511.
+
+    \item Valera, M. and Velastin, S. A. (2005). Intelligent Distributed Surveillance Systems: A Review. \textit{IEE Proceedings on Vision, Image and Signal Processing}, Vol. 152, No. 2, pp. 192-204.
+
+    \item Jocher, G., Chaurasia, A., and Qiu, J. (2023). Ultralytics YOLO, Version 8.0.0. Available at: https://github.com/ultralytics/ultralytics
+
+    \item InsightFace Contributors (2021). InsightFace: 2D and 3D Face Analysis Project. Available at: https://github.com/deepinsight/insightface
+
+    \item Lin, T.-Y., Maire, M., Belongie, S., et al. (2014). Microsoft COCO: Common Objects in Context. \textit{European Conference on Computer Vision}, pp. 740-755.
+\end{enumerate}
+
+
+% =============================================================================
+% APPENDIX: SOURCE CODE
+% =============================================================================
+\appendix
+
+\chapter{Source Code}
+
+This appendix contains the complete source code of all Python modules in the SafeGuard system. The files are included directly from the project directory.
+
+\section{config.py}
+
+\lstinputlisting[caption={config.py: central configuration module}]{config.py}
+
+\section{pipeline.py}
+
+\lstinputlisting[caption={pipeline.py: shared detection pipeline used by both CLI and web}]{pipeline.py}
+
+\section{face\_detection.py}
+
+\lstinputlisting[caption={face\_detection.py: InsightFace SCRFD and ArcFace recognition}]{face_detection.py}
+
+\section{weapon\_detection.py}
+
+\lstinputlisting[caption={weapon\_detection.py: YOLO11s weapon detection}]{weapon_detection.py}
+
+\section{person\_detection.py}
+
+\lstinputlisting[caption={person\_detection.py: YOLOv8n person detection}]{person_detection.py}
+
+\section{alarm.py}
+
+\lstinputlisting[caption={alarm.py: pygame audio alarm with lazy initialization}]{alarm.py}
+
+\section{email\_sender.py}
+
+\lstinputlisting[caption={email\_sender.py: Gmail SMTP email alert}]{email_sender.py}
+
+\section{utils.py}
+
+\lstinputlisting[caption={utils.py: ArcFace embedding loader with dimension validation}]{utils.py}
+
+\section{main.py}
+
+\lstinputlisting[caption={main.py: CLI entry point}]{main.py}
+
+\section{app.py}
+
+\lstinputlisting[caption={app.py: Flask web server with enrollment and streaming routes}]{app.py}
+
+\end{document}
