@@ -1,34 +1,35 @@
 \documentclass[12pt,a4paper]{report}
 
-% ── Encoding and font ─────────────────────────────────────────────────────────
+% == Encoding and font =========================================================
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{mathptmx}
+\usepackage{lmodern} % Added to fix the bold typewriter font warning
 
-% ── Page layout ───────────────────────────────────────────────────────────────
+% == Page layout ===============================================================
 \usepackage{geometry}
 \geometry{top=1in, bottom=1in, left=1.25in, right=1in}
 
-% ── Spacing ───────────────────────────────────────────────────────────────────
+% == Spacing ===================================================================
 \usepackage{setspace}
 \onehalfspacing
 \setlength{\parindent}{0.5in}
 \setlength{\parskip}{0pt}
 
-% ── Maths ─────────────────────────────────────────────────────────────────────
+% == Maths =====================================================================
 \usepackage{amsmath, amssymb}
 
-% ── Graphics ──────────────────────────────────────────────────────────────────
+% == Graphics ==================================================================
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{subcaption}
 
-% ── Chapter-based figure and table numbering ──────────────────────────────────
+% == Chapter-based figure and table numbering ==================================
 \usepackage{chngcntr}
 \counterwithin{figure}{chapter}
 \counterwithin{table}{chapter}
 
-% ── Heading formats ───────────────────────────────────────────────────────────
+% == Heading formats ===========================================================
 \usepackage{titlesec}
 
 % Chapter: 16 pt, Bold, ALL CAPS, centred
@@ -56,16 +57,16 @@
   {\fontsize{12}{14.4}\selectfont\mdseries\itshape}
   {\thesubsubsection}{1em}{}
 
-% ── Tables ────────────────────────────────────────────────────────────────────
+% == Tables ====================================================================
 \usepackage{booktabs}
 \usepackage{array}
 \usepackage{tabularx}
 
-% ── Algorithms ────────────────────────────────────────────────────────────────
+% == Algorithms ================================================================
 \usepackage{algorithm}
 \usepackage{algpseudocode}
 
-% ── Source code listings ──────────────────────────────────────────────────────
+% == Source code listings ======================================================
 \usepackage{listingsutf8}
 \usepackage{xcolor}
 
@@ -78,6 +79,7 @@
 \lstset{
   inputencoding=utf8,
   extendedchars=true,
+  literate={“}{{"}}1 {”}{{"}}1 {‘}{{'}}1 {’}{{'}}1 {°}{$^\circ$}1,
   language=Python,
   basicstyle=\ttfamily\fontsize{9}{11}\selectfont,
   keywordstyle=\color{codekeyword}\bfseries,
@@ -100,18 +102,16 @@
   aboveskip=10pt,
   belowskip=6pt,
 }
-
-% ── Hyperlinks ────────────────────────────────────────────────────────────────
+% == Hyperlinks ================================================================
 \usepackage[hidelinks]{hyperref}
 
-% ── Miscellaneous ─────────────────────────────────────────────────────────────
+% == Miscellaneous =============================================================
 \usepackage{microtype}
 \usepackage{enumitem}
 \setlist{noitemsep, topsep=4pt}
 
-% ─────────────────────────────────────────────────────────────────────────────
+% =============================================================================
 \begin{document}
-
 % =============================================================================
 % TITLE PAGE
 % =============================================================================
@@ -119,40 +119,48 @@
 \centering
 \vspace*{0.6cm}
 
-{\fontsize{16}{20}\selectfont\bfseries A SYNOPSIS REPORT ON}\\[0.9cm]
 
+{\fontsize{18}{20}\selectfont\bfseries PROJECT REPORT}\\[0.3cm]
+
+% ---- Title with lines (like your image) ----
+\noindent\rule{\textwidth}{0.5pt}\\[0.3cm]
 {\fontsize{16}{20}\selectfont\bfseries REAL-TIME WEAPON DETECTION WITH FACE RECOGNITION}\\[0.3cm]
-{\fontsize{12}{14.4}\selectfont (Integrating YOLO and InsightFace ArcFace for Intelligent Surveillance)}\\[1.0cm]
+\noindent\rule{\textwidth}{0.5pt}\\[0.5cm]
+
+{\fontsize{12}{14.4}\selectfont (Integrating YOLO and InsightFace ArcFace for Intelligent Surveillance)}\\[0.5cm]
 
 {\fontsize{12}{14.4}\selectfont Submitted in partial fulfilment of the requirement for the award of the degree of}\\[0.5cm]
 
 {\fontsize{14}{17}\selectfont\bfseries BACHELOR OF TECHNOLOGY}\\[0.3cm]
 {\fontsize{12}{14.4}\selectfont IN}\\[0.3cm]
-{\fontsize{14}{17}\selectfont\bfseries COMPUTER SCIENCE AND ENGINEERING}\\[1.0cm]
+{\fontsize{14}{17}\selectfont\bfseries COMPUTER SCIENCE AND ENGINEERING}\\[0.5cm]
 
-{\fontsize{12}{14.4}\selectfont\bfseries Submitted by}\\[0.6cm]
+{\fontsize{12}{14.4}\selectfont\bfseries Submitted by}\\[0.3cm]
 
 \begin{tabular}{ll}
-Shivang Rawat           & \hspace{1cm} University Roll No: 2219650 \\[0.4cm]
-Sanya Sundriyal         & \hspace{1cm} University Roll No: 2219560 \\[0.4cm]
-Mohit Bhandari          & \hspace{1cm} University Roll No: 2219099 \\[0.4cm]
-Bhupendra Singh Pundir  & \hspace{1cm} University Roll No: 2218625 \\
-\end{tabular}\\[1.0cm]
+Shivang Rawat           & \hspace{0cm} University Roll No: 2219650 \\[0.0cm]
+Sanya Sundriyal         & \hspace{0cm} University Roll No: 2219560 \\[0.0cm]
+Mohit Bhandari          & \hspace{0cm} University Roll No: 2219099 \\[0.0cm]
+Bhupendra Singh Pundir  & \hspace{0cm} University Roll No: 2218625 \\
+\end{tabular}\\[0.5cm]
 
-{\fontsize{12}{14.4}\selectfont Under the guidance of}\\[0.4cm]
+{\fontsize{12}{14.4}\selectfont Under the guidance of}\\[0.2cm]
 {\fontsize{12}{14.4}\selectfont\bfseries Dr. Bina Bhandari}\\
-{\fontsize{12}{14.4}\selectfont Assistant Professor}\\[0.6cm]
-{\fontsize{12}{14.4}\selectfont Project Group No: \underline{\hspace{2.5cm}}}\\[1.2cm]
+{\fontsize{12}{14.4}\selectfont Assistant Professor}\\[0.4cm]
+
+{\fontsize{12}{14.4}\selectfont Project Group No: \underline{324}}\\[0.2cm]
+
+% ---- Image added here ----
+\includegraphics[width=1.31in,height=1.24in]{front1.png}\\[0.2cm]
 
 \vfill
 
-{\fontsize{12}{14.4}\selectfont\bfseries DEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING}\\[0.3cm]
+{\fontsize{12}{14.4}\selectfont\bfseries DEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING}\\[0.2cm]
 {\fontsize{12}{14.4}\selectfont\bfseries GRAPHIC ERA HILL UNIVERSITY (GEHU)}\\[0.2cm]
-{\fontsize{12}{14.4}\selectfont Dehradun, Uttarakhand}\\[0.4cm]
+{\fontsize{12}{14.4}\selectfont Dehradun, Uttarakhand}\\[0.2cm]
 {\fontsize{12}{14.4}\selectfont May, 2026}
 
 \end{titlepage}
-
 
 % =============================================================================
 % FRONT MATTER
@@ -160,30 +168,43 @@ Bhupendra Singh Pundir  & \hspace{1cm} University Roll No: 2218625 \\
 \pagenumbering{roman}
 \setcounter{page}{2}
 
-% ── Candidate's Declaration ───────────────────────────────────────────────────
-\chapter*{Candidate's Declaration}
-\addcontentsline{toc}{chapter}{Candidate's Declaration}
 \thispagestyle{plain}
+
+% ---- Top image ----
+\begin{center}
+\includegraphics[width=5.604in,height=1.146in]{front2.png}
+\end{center}
+
+\vspace{0.2cm}
+
+% ---- Title ----
+\begin{center}
+    {\Large\bfseries Candidate's Declaration}
+\end{center}
+\addcontentsline{toc}{chapter}{Candidate's Declaration}
+
+\vspace{0.3cm}
 
 I/We hereby certify that the work which is being presented in the project report entitled \textbf{``Real-Time Weapon Detection with Face Recognition''} in partial fulfillment of the requirements for the award of the Degree of Bachelor of Technology in Computer Science and Engineering in the Department of Computer Science and Engineering of the Graphic Era Hill University, Dehradun, has been carried out by the undersigned under the supervision of Dr. Bina Bhandari, Assistant Professor, Department of Computer Science and Engineering, Graphic Era Hill University, Dehradun.
 
-\vspace{2.5cm}
+\vspace{0.8cm}
 
 \noindent
 \begin{tabular}{p{4.5cm} p{4cm} p{4cm}}
-\textbf{Name} & \textbf{University Roll No.} & \textbf{Signature} \\[1.2cm]
-Shivang Rawat           & 2219650 & \underline{\hspace{3cm}} \\[1.0cm]
-Sanya Sundriyal         & 2219560 & \underline{\hspace{3cm}} \\[1.0cm]
-Mohit Bhandari          & 2219099 & \underline{\hspace{3cm}} \\[1.0cm]
-Bhupendra Singh Pundir  & 2218625 & \underline{\hspace{3cm}} \\
+\textbf{Name} & \textbf{University Roll No.} & \textbf{Signature} \\[0.4cm]
+Shivang Rawat           & 2219650 & \underline{\hspace{2cm}} \\[0.35cm]
+Sanya Sundriyal         & 2219560 & \underline{\hspace{2cm}} \\[0.35cm]
+Mohit Bhandari          & 2219099 & \underline{\hspace{2cm}} \\[0.35cm]
+Bhupendra Singh Pundir  & 2218625 & \underline{\hspace{2cm}} \\
 \end{tabular}
 
-\vspace{2cm}
+\vspace{1cm}
 
-\noindent\textbf{Supervisor:}\\[1.0cm]
+\noindent\textbf{Supervisor:}\\[0.6cm]
+
 \noindent
 \begin{tabular}{l}
-\underline{\hspace{5cm}} \\
+\underline{\hspace{4cm}} \\
 Dr. Bina Bhandari \\
 Assistant Professor \\
 Department of Computer Science and Engineering \\
@@ -192,7 +213,34 @@ Graphic Era Hill University, Dehradun \\
 
 \newpage
 
-% ── Abstract ──────────────────────────────────────────────────────────────────
+% =========================================================
+% == Acknowledgement ==========================================================
+\chapter*{Acknowledgement}
+\addcontentsline{toc}{chapter}{Acknowledgement}
+
+We would like to express our sincere gratitude to our project guide, \textbf{Dr. Bina Bhandari}, Assistant Professor, Department of Computer Science and Engineering, Graphic Era Hill University, Dehradun, for her valuable guidance, continuous support, and encouragement throughout the development of this project. Her insights and suggestions greatly helped us in completing this work successfully.
+
+We are also thankful to the faculty members of the Department of Computer Science and Engineering for providing us with the necessary resources and knowledge required to carry out this project.
+
+We extend our heartfelt thanks to \textbf{Graphic Era Hill University} for providing a supportive environment and infrastructure for this work.
+
+We would also like to acknowledge the contributions of the open-source community and the developers of tools and frameworks such as YOLO, InsightFace, OpenCV, and Flask, which played an important role in the successful implementation of this system.
+
+Finally, we are grateful to our family and friends for their constant support, motivation, and encouragement throughout the course of this project.
+
+\vspace{2cm}
+
+\noindent
+\begin{tabular}{p{6cm} p{6cm}}
+\textbf{Shivang Rawat} & \textbf{Sanya Sundriyal} \\
+Roll No.: 2219650 & Roll No.: 2219560 \\[1.5cm]
+
+\textbf{Mohit Bhandari} & \textbf{Bhupendra Singh Pundir} \\
+Roll No.: 2219099 & Roll No.: 2218625 \\
+\end{tabular}
+
+\newpage
+% == Abstract ==================================================================
 \chapter*{Abstract}
 \addcontentsline{toc}{chapter}{Abstract}
 
@@ -207,16 +255,16 @@ The whole system runs on Python 3.11, uses Flask for the web interface, and proc
 
 \newpage
 
-% ── Table of Contents ─────────────────────────────────────────────────────────
+% == Table of Contents =========================================================
 \tableofcontents
 \newpage
 
-% ── List of Figures ───────────────────────────────────────────────────────────
+% == List of Figures ===========================================================
 \listoffigures
 \addcontentsline{toc}{chapter}{List of Figures}
 \newpage
 
-% ── List of Tables ────────────────────────────────────────────────────────────
+% == List of Tables ============================================================
 \listoftables
 \addcontentsline{toc}{chapter}{List of Tables}
 \newpage
@@ -878,7 +926,7 @@ Within each call to \texttt{process\_frame()}, face detection and weapon detecti
 
 With \texttt{FRAME\_SKIP=3} and a 30 FPS camera, the AI pipeline processes roughly 10 frames per second. The camera still reads at 30 FPS so the display is smooth, but only one in three frames goes through the detection models. This reduces CPU load to about one third with minimal impact on detection, since real threats last several seconds and will be caught on the next processed frame.
 
-\section{Phase 5: Deployment}
+\sectionsection{Phase 5: Deployment}
 
 \subsection{Web interface}
 
@@ -1183,7 +1231,6 @@ The codebase is clean and maintainable. All detection logic lives in \texttt{pip
     \item Lin, T.-Y., Maire, M., Belongie, S., et al. (2014). Microsoft COCO: Common Objects in Context. \textit{European Conference on Computer Vision}, pp. 740-755.
 \end{enumerate}
 
-
 % =============================================================================
 % APPENDIX: SOURCE CODE
 % =============================================================================
@@ -1191,46 +1238,1077 @@ The codebase is clean and maintainable. All detection logic lives in \texttt{pip
 
 \chapter{Source Code}
 
-This appendix contains the complete source code of all Python modules in the SafeGuard system. The files are included directly from the project directory.
+This appendix contains the complete source code of all Python modules in the SafeGuard system.
 
+% -----------------------------------------------------------------------------
 \section{config.py}
+\begin{lstlisting}
+"""
+Central configuration for SafeGuard detection system.
+All tuneable values live here, backed by environment variables so nothing
+needs to be edited in source code between environments.
 
-\lstinputlisting[caption={config.py: central configuration module}]{config.py}
+Copy .env.example -> .env and fill in your values, or export the variables
+directly in your shell / systemd unit.
+"""
+import os
+import logging
+from dotenv import load_dotenv
 
+load_dotenv()
+
+# --- Camera -------------------------------------------------------------------
+CAMERA_INDEX = int(os.getenv("CAMERA_INDEX", "2"))
+
+# --- Detection thresholds -----------------------------------------------------
+# ArcFace cosine similarity: same person ~= 0.3-0.6, strangers ~= 0.0-0.2
+FACE_THRESHOLD   = float(os.getenv("FACE_THRESHOLD",   "0.35"))
+WEAPON_THRESHOLD = float(os.getenv("WEAPON_THRESHOLD", "0.6"))
+PERSON_THRESHOLD = float(os.getenv("PERSON_THRESHOLD", "0.5"))
+
+# --- Alarm & alerting ---------------------------------------------------------
+ALARM_COOLDOWN        = int(os.getenv("ALARM_COOLDOWN",        "5"))   # seconds
+ALARM_EMAIL_THRESHOLD = int(os.getenv("ALARM_EMAIL_THRESHOLD", "3"))   # alarms before email
+
+# --- Performance --------------------------------------------------------------
+# Process every Nth frame.  1 = every frame (heavy), 3 = ~3x lighter on CPU.
+FRAME_SKIP = int(os.getenv("FRAME_SKIP", "3"))
+
+# --- Paths --------------------------------------------------------------------
+EMBEDDINGS_FILE = os.getenv("EMBEDDINGS_FILE", "facenet_embeddings1.npy")
+DATASET_FOLDER  = os.getenv("DATASET_FOLDER",  "dataset")
+
+# --- Email --------------------------------------------------------------------
+EMAIL_SENDER    = os.getenv("ALERT_SENDER_EMAIL")
+EMAIL_PASSWORD  = os.getenv("ALERT_EMAIL_PASSWORD")
+EMAIL_RECIPIENT = os.getenv("ALERT_TO_EMAIL")
+
+# --- Logging ------------------------------------------------------------------
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
+    datefmt="%H:%M:%S",
+)
+\end{lstlisting}
+
+% -----------------------------------------------------------------------------
 \section{pipeline.py}
+\begin{lstlisting}
+"""
+Shared detection pipeline.
 
-\lstinputlisting[caption={pipeline.py: shared detection pipeline used by both CLI and web}]{pipeline.py}
+Both the CLI entry-point (main.py) and the Flask web server (app.py) use
+the functions defined here so that detection logic lives in exactly one
+place.  Previously the ~120-line detection loop was copy-pasted between
+detect_objects_in_realtime() and generate_frames().
 
+Public API
+----------
+DetectionState          - mutable alarm/email bookkeeping per camera session
+process_frame()         - run all three detectors on one frame; handle alarm/email
+detect_objects_in_realtime()  - CLI camera loop
+generate_frames()             - MJPEG generator for Flask streaming
+"""
+import cv2
+import threading
+import time
+import logging
+from dataclasses import dataclass, field
+
+from face_detection   import detect_faces
+from weapon_detection import detect_weapons
+from person_detection import detect_people
+from alarm            import start_alarm, stop_alarm
+from utils            import load_known_faces
+from config           import (
+    CAMERA_INDEX,
+    FRAME_SKIP,
+    FACE_THRESHOLD,
+    ALARM_COOLDOWN,
+    ALARM_EMAIL_THRESHOLD,
+    EMBEDDINGS_FILE,
+)
+
+logger = logging.getLogger(__name__)
+
+
+# --- State --------------------------------------------------------------------
+
+@dataclass
+class DetectionState:
+    """Per-session alarm and email bookkeeping.  One instance per camera loop."""
+    alarm_playing:  bool  = False
+    last_alarm_time: float = field(default_factory=float)
+    alarm_count:    int   = 0
+
+
+# --- Core detection pass ------------------------------------------------------
+
+def process_frame(
+    frame,
+    known_faces: dict,
+    state: DetectionState,
+) -> tuple[bool, bool, bool]:
+    """
+    Run all three detectors on a single *frame*.
+
+    Face and weapon detectors run in parallel background threads while the
+    person detector runs on the calling thread, so the wall-clock latency
+    is roughly max(face_time, weapon_time) + person_time instead of the sum.
+
+    Both detector threads write directly to *frame* (bounding boxes / labels).
+    A threading.Lock is used to protect the shared results dict; the GIL
+    alone is not sufficient when OpenCV releases it in C++ code.
+
+    Side-effects:
+        * Triggers / stops audio alarm via alarm.py
+        * Fires a background email thread after ALARM_EMAIL_THRESHOLD alarms
+        * Resets alarm_count after each email so the alert rate stays bounded
+
+    Returns:
+        (person_detected, unknown_detected, weapon_detected) - booleans
+    """
+    result: dict = {}
+    lock = threading.Lock()
+
+    def _run_face():
+        val = detect_faces(frame, known_faces, FACE_THRESHOLD)
+        with lock:
+            result["face"] = val
+
+    def _run_weapon():
+        val = detect_weapons(frame)
+        with lock:
+            result["weapon"] = val
+
+    face_t   = threading.Thread(target=_run_face,   daemon=True)
+    weapon_t = threading.Thread(target=_run_weapon, daemon=True)
+    face_t.start()
+    weapon_t.start()
+
+    # Person detection runs on the calling thread while the other two are busy.
+    person_boxes    = detect_people(frame)
+    person_detected = len(person_boxes) > 0
+
+    face_t.join()
+    weapon_t.join()
+
+    unknown_detected = result.get("face",   False)
+    weapon_detected  = result.get("weapon", False)
+
+    # Draw person boxes (face/weapon boxes drawn by their own modules).
+    for (x1, y1, x2, y2) in person_boxes:
+        cv2.rectangle(frame, (x1, y1), (x2, y2), (255, 255, 0), 2)
+        cv2.putText(
+            frame, "Person", (x1, y1 - 10),
+            cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255, 255, 0), 2,
+        )
+
+    logger.debug(
+        f"Person:{person_detected}  Unknown:{unknown_detected}  Weapon:{weapon_detected}"
+    )
+
+    # --- Alarm / email logic --------------------------------------------------
+    now    = time.time()
+    threat = person_detected and unknown_detected and weapon_detected
+
+    if threat:
+        if not state.alarm_playing or (now - state.last_alarm_time > ALARM_COOLDOWN):
+            logger.warning("THREAT DETECTED - person + unknown face + weapon.")
+            threading.Thread(target=start_alarm, daemon=True).start()
+            state.alarm_playing   = True
+            state.last_alarm_time = now
+            state.alarm_count    += 1
+
+            if state.alarm_count >= ALARM_EMAIL_THRESHOLD:
+                from email_sender import send_email_with_attachment
+                snapshot = frame.copy()
+
+                def _send(img):
+                    path = "screenshot.png"
+                    cv2.imwrite(path, img)
+                    send_email_with_attachment(path)
+
+                threading.Thread(target=_send, args=(snapshot,), daemon=True).start()
+                state.alarm_count = 0       # reset - prevents email every frame
+
+    elif state.alarm_playing:
+        logger.info("Threat condition cleared - stopping alarm.")
+        stop_alarm()
+        state.alarm_playing = False
+
+    return person_detected, unknown_detected, weapon_detected
+
+
+# --- Camera loops -------------------------------------------------------------
+
+def _open_camera() -> cv2.VideoCapture:
+    """Open camera at CAMERA_INDEX; logs a clear error if unavailable."""
+    cap = cv2.VideoCapture(CAMERA_INDEX)
+    if not cap.isOpened():
+        logger.error(
+            f"Cannot open camera at index {CAMERA_INDEX}.  "
+            "Check the camera is connected and set CAMERA_INDEX in .env "
+            "to the correct device number (0 is usually the built-in webcam)."
+        )
+    else:
+        cap.set(cv2.CAP_PROP_FRAME_WIDTH,  640)
+        cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
+    return cap
+
+
+def detect_objects_in_realtime() -> None:
+    """
+    CLI detection loop.
+
+    Opens the configured camera, runs the detection pipeline, and displays
+    the annotated feed in a cv2 window.  Press 'q' to quit.
+    """
+    cap = _open_camera()
+    if not cap.isOpened():
+        return
+
+    known_faces      = load_known_faces(EMBEDDINGS_FILE)
+    state            = DetectionState()
+    frame_count      = 0
+    last_reload_time = time.time()
+
+    logger.info(
+        f"CLI detection started - camera {CAMERA_INDEX}, "
+        f"frame-skip {FRAME_SKIP}.  Press 'q' to quit."
+    )
+
+    while True:
+        ret, frame = cap.read()
+        if not ret:
+            logger.error("Camera read failed - stopping.")
+            break
+
+        frame_count += 1
+        if frame_count % FRAME_SKIP != 0:
+            continue
+
+        # Reload enrolled faces every 30 s so new enrolments are picked up
+        # without restarting the process.
+        now = time.time()
+        if now - last_reload_time >= 30:
+            known_faces      = load_known_faces(EMBEDDINGS_FILE)
+            last_reload_time = now
+
+        process_frame(frame, known_faces, state)
+        cv2.imshow("SafeGuard - Real-time Detection  (q = quit)", frame)
+
+        if cv2.waitKey(1) & 0xFF == ord("q"):
+            break
+
+    cap.release()
+    cv2.destroyAllWindows()
+    stop_alarm()
+    logger.info("CLI detection stopped.")
+
+
+def generate_frames(stop_event: threading.Event, streaming_flag):
+    """
+    MJPEG frame generator for Flask streaming.
+
+    Yields multipart JPEG byte chunks suitable for a
+    ``multipart/x-mixed-replace`` HTTP response.
+
+    Args:
+        stop_event:     threading.Event - set by /stop_stream to end the loop.
+        streaming_flag: callable () -> bool - returns False to end the loop.
+    """
+    cap = _open_camera()
+    if not cap.isOpened():
+        return
+
+    known_faces      = load_known_faces(EMBEDDINGS_FILE)
+    state            = DetectionState()
+    frame_count      = 0
+    last_reload_time = time.time()
+
+    logger.info("Web stream started.")
+
+    while streaming_flag() and not stop_event.is_set():
+        ret, frame = cap.read()
+        if not ret:
+            logger.error("Camera read failed in web stream.")
+            break
+
+        frame_count += 1
+        if frame_count % FRAME_SKIP != 0:
+            continue
+
+        # Reload enrolled faces every 30 s so new enrolments are picked up
+        # without restarting the stream.
+        now = time.time()
+        if now - last_reload_time >= 30:
+            known_faces      = load_known_faces(EMBEDDINGS_FILE)
+            last_reload_time = now
+
+        process_frame(frame, known_faces, state)
+
+        ok, buffer = cv2.imencode(".jpg", frame)
+        if not ok:
+            continue
+
+        yield (
+            b"--frame\r\n"
+            b"Content-Type: image/jpeg\r\n\r\n"
+            + buffer.tobytes()
+            + b"\r\n"
+        )
+
+    cap.release()
+    stop_alarm()
+    logger.info("Web stream stopped.")
+
+\end{lstlisting}
+
+% -----------------------------------------------------------------------------
 \section{face\_detection.py}
+\begin{lstlisting}
+"""
+Face detection and recognition using InsightFace buffalo_s.
 
-\lstinputlisting[caption={face\_detection.py: InsightFace SCRFD and ArcFace recognition}]{face_detection.py}
+Detection:    SCRFD-500M  - handles faces up to +/-90 rotation, partial occlusion,
+                            variable lighting.  Replaces OpenCV Haar cascade.
+Recognition:  ArcFace (MobileNet backbone, w600k_mbf)  - 512-d L2-normalised
+                            embeddings.  Replaces keras-facenet FaceNet-128d.
 
+The FaceAnalysis object is a module-level singleton initialised lazily on the
+first call to detect_faces() or get_face_app().  InsightFace downloads the
+buffalo_s model pack (~85 MB) to ~/.insightface/models/ on first use.
+"""
+import cv2
+import numpy as np
+import logging
+import warnings
+
+from config import FACE_THRESHOLD
+
+# InsightFace internally uses a deprecated scikit-image API (SimilarityTransform.estimate).
+# Suppress the FutureWarning so it doesn't pollute the console on every detected face.
+warnings.filterwarnings("ignore", category=FutureWarning, module="insightface")
+
+logger = logging.getLogger(__name__)
+
+_face_app = None
+
+
+def get_face_app():
+    """
+    Return the InsightFace FaceAnalysis singleton.
+    Initialises (and downloads model if needed) on the first call.
+    """
+    global _face_app
+    if _face_app is not None:
+        return _face_app
+
+    try:
+        from insightface.app import FaceAnalysis
+        _face_app = FaceAnalysis(
+            name="buffalo_s",
+            providers=["CPUExecutionProvider"],
+        )
+        # det_size=(320,320) is faster on CPU than the default (640,640)
+        # while still catching faces down to ~20x20 px in a 640x480 frame.
+        _face_app.prepare(ctx_id=0, det_size=(320, 320))
+        logger.info("InsightFace buffalo_s ready (SCRFD detector + ArcFace recogniser).")
+    except Exception as exc:
+        logger.error(f"Failed to initialise InsightFace: {exc}")
+        raise
+    return _face_app
+
+
+def _cosine_sim(a: np.ndarray, b: np.ndarray) -> float:
+    """Cosine similarity between two vectors.  Returns 0.0 if either is zero."""
+    denom = np.linalg.norm(a) * np.linalg.norm(b)
+    if denom == 0.0:
+        return 0.0
+    return float(np.dot(a, b) / denom)
+
+
+def detect_faces(
+    frame: np.ndarray,
+    known_faces: dict,
+    threshold: float = FACE_THRESHOLD,
+) -> bool:
+    """
+    Detect all faces in *frame* and classify each against *known_faces*.
+
+    Draws colour-coded bounding boxes + name/score labels on *frame* in-place:
+      * Green  - recognised person (score >= threshold)
+      * Red    - unknown person   (score < threshold or no enrolled faces)
+
+    Args:
+        frame:       BGR image (numpy ndarray) from OpenCV.
+        known_faces: Dict {name: 512-d ArcFace embedding} from load_known_faces().
+        threshold:   Minimum cosine similarity to accept a match (default 0.35).
+
+    Returns:
+        True if at least one unrecognised face is present, False otherwise.
+    """
+    app = get_face_app()
+    faces = app.get(frame)
+
+    if not faces:
+        return False
+
+    if not known_faces:
+        logger.debug("No enrolled faces - all detected faces treated as Unknown.")
+
+    unknown_detected = False
+
+    for face in faces:
+        embedding = face.embedding          # 512-d, L2-normalised by InsightFace
+        x1, y1, x2, y2 = face.bbox.astype(int)
+
+        best_name  = "Unknown"
+        best_score = -1.0
+
+        for name, stored_emb in known_faces.items():
+            score = _cosine_sim(embedding, stored_emb)
+            if score > best_score:
+                best_score = score
+                best_name  = name
+
+        if best_score < threshold:
+            best_name        = "Unknown"
+            unknown_detected = True
+            colour           = (0, 0, 255)    # red
+        else:
+            colour = (0, 255, 0)              # green
+
+        cv2.rectangle(frame, (x1, y1), (x2, y2), colour, 2)
+        label = f"{best_name} ({best_score:.2f})" if best_score >= 0 else "Unknown"
+        cv2.putText(
+            frame, label, (x1, y1 - 10),
+            cv2.FONT_HERSHEY_SIMPLEX, 0.8, colour, 2,
+        )
+
+    return unknown_detected
+\end{lstlisting}
+
+% -----------------------------------------------------------------------------
 \section{weapon\_detection.py}
+\begin{lstlisting}
+import cv2
+import logging
+from ultralytics import YOLO
 
-\lstinputlisting[caption={weapon\_detection.py: YOLO11s weapon detection}]{weapon_detection.py}
+from config import WEAPON_THRESHOLD
 
+logger = logging.getLogger(__name__)
+
+# Model and class list loaded once at module import - not per frame.
+yolo_model = YOLO("best100.pt")
+
+
+def _load_classes(path: str) -> list[str]:
+    with open(path, "r") as fh:
+        return [line.strip().lower() for line in fh if line.strip()]
+
+
+classes = _load_classes("coco2.txt")
+
+
+def detect_weapons(frame) -> bool:
+    """
+    Detect guns and knives in *frame* using the custom YOLO model.
+
+    Draws red bounding boxes + confidence labels on *frame* in-place.
+    Returns True if at least one weapon is found above WEAPON_THRESHOLD.
+    """
+    results = yolo_model(frame, verbose=False)
+    weapon_detected = False
+
+    for result in results:
+        for idx in range(len(result.boxes)):
+            conf = float(result.boxes.conf[idx])
+            if conf < WEAPON_THRESHOLD:
+                continue
+
+            cls_idx    = int(result.boxes.cls[idx])
+            class_name = classes[cls_idx]   # already lower-cased at load time
+
+            if "gun" not in class_name and "knife" not in class_name:
+                continue
+
+            weapon_detected = True
+            x1, y1, x2, y2 = map(int, result.boxes.xyxy[idx])
+            label = f"{class_name} {conf:.2f}"
+
+            cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 0, 255), 2)
+            cv2.putText(
+                frame, label, (x1, y1 - 10),
+                cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 1, cv2.LINE_AA,
+            )
+
+    return weapon_detected
+\end{lstlisting}
+
+% -----------------------------------------------------------------------------
 \section{person\_detection.py}
+\begin{lstlisting}
+import logging
+from ultralytics import YOLO
 
-\lstinputlisting[caption={person\_detection.py: YOLOv8n person detection}]{person_detection.py}
+from config import PERSON_THRESHOLD
 
+logger = logging.getLogger(__name__)
+
+# YOLOv8n pretrained on COCO - lighter and faster than YOLOv5su for this task.
+# yolov8n.pt is already present in the repo root.
+model = YOLO("yolov8n.pt")
+
+
+def detect_people(frame) -> list[tuple[int, int, int, int]]:
+    """
+    Detect persons (COCO class 0) in *frame*.
+
+    Returns a list of (x1, y1, x2, y2) integer bounding boxes for every
+    detection that exceeds PERSON_THRESHOLD confidence.
+    Does NOT draw annotations - that is handled by the pipeline so the
+    drawing colour is consistent regardless of detection module.
+    """
+    results = model(frame, verbose=False)[0]
+    person_boxes: list[tuple[int, int, int, int]] = []
+
+    for box in results.boxes:
+        if int(box.cls.item()) == 0 and float(box.conf.item()) >= PERSON_THRESHOLD:
+            x1, y1, x2, y2 = map(int, box.xyxy[0])
+            person_boxes.append((x1, y1, x2, y2))
+
+    return person_boxes
+\end{lstlisting}
+
+% -----------------------------------------------------------------------------
 \section{alarm.py}
+\begin{lstlisting}
+"""
+Audio alarm module.
 
-\lstinputlisting[caption={alarm.py: pygame audio alarm with lazy initialization}]{alarm.py}
+pygame is initialised lazily on the first call to start_alarm() so that
+importing this module on a headless server (no audio device) does not
+crash the entire application at startup.
+"""
+import logging
 
+logger = logging.getLogger(__name__)
+
+_mixer_ready  = False
+_alarm_sound  = None
+
+
+def _init_mixer() -> bool:
+    """Initialise pygame mixer on first use.  Returns True if ready."""
+    global _mixer_ready, _alarm_sound
+    if _mixer_ready:
+        return True
+    try:
+        import pygame
+        pygame.mixer.init()
+        _alarm_sound = pygame.mixer.Sound("alarm.wav")
+        _mixer_ready = True
+        logger.info("Audio mixer initialised (alarm.wav loaded).")
+    except Exception as exc:
+        logger.warning(f"Audio not available - alarm will be silent. Reason: {exc}")
+        _mixer_ready = False
+    return _mixer_ready
+
+
+def start_alarm() -> None:
+    if _init_mixer() and _alarm_sound is not None:
+        _alarm_sound.play(maxtime=5000)
+        logger.info("Alarm started.")
+
+
+def stop_alarm() -> None:
+    if _mixer_ready and _alarm_sound is not None:
+        _alarm_sound.stop()
+        logger.info("Alarm stopped.")
+\end{lstlisting}
+
+% -----------------------------------------------------------------------------
 \section{email\_sender.py}
+\begin{lstlisting}
+import os
+import smtplib
+import logging
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.base import MIMEBase
+from email import encoders
 
-\lstinputlisting[caption={email\_sender.py: Gmail SMTP email alert}]{email_sender.py}
+from config import EMAIL_SENDER, EMAIL_PASSWORD, EMAIL_RECIPIENT
 
+logger = logging.getLogger(__name__)
+
+
+def send_email_with_attachment(image_path: str, to_email: str | None = None) -> bool:
+    """
+    Send a security-alert email with an optional screenshot attachment.
+
+    Credentials are read from environment variables (ALERT_SENDER_EMAIL,
+    ALERT_EMAIL_PASSWORD, ALERT_TO_EMAIL).  If any are missing the call
+    is a no-op and returns False so the caller can continue safely.
+    """
+    sender    = EMAIL_SENDER
+    password  = EMAIL_PASSWORD
+    recipient = to_email or EMAIL_RECIPIENT
+
+    if not all([sender, password, recipient]):
+        logger.warning(
+            "Email alert skipped - credentials not configured. "
+            "Set ALERT_SENDER_EMAIL, ALERT_EMAIL_PASSWORD, ALERT_TO_EMAIL in .env"
+        )
+        return False
+
+    subject = "Security Alert: Unknown Person with Weapon Detected"
+    body    = (
+        "An unknown person carrying a weapon has been detected by SafeGuard.\n\n"
+        "Please review the attached screenshot immediately and take appropriate action."
+    )
+
+    msg = MIMEMultipart()
+    msg["From"]    = sender
+    msg["To"]      = recipient
+    msg["Subject"] = subject
+    msg.attach(MIMEText(body, "plain"))
+
+    if image_path and os.path.exists(image_path):
+        with open(image_path, "rb") as fh:
+            part = MIMEBase("application", "octet-stream")
+            part.set_payload(fh.read())
+        encoders.encode_base64(part)
+        part.add_header(
+            "Content-Disposition",
+            f"attachment; filename={os.path.basename(image_path)}",
+        )
+        msg.attach(part)
+    else:
+        logger.warning(f"Screenshot not found at '{image_path}' - sending without attachment.")
+
+    try:
+        with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
+            server.login(sender, password)
+            server.send_message(msg)
+        logger.info(f"Alert email sent to {recipient}.")
+        return True
+    except Exception as exc:
+        logger.error(f"Failed to send alert email: {exc}")
+        return False
+\end{lstlisting}
+
+% -----------------------------------------------------------------------------
 \section{utils.py}
+\begin{lstlisting}
+import os
+import numpy as np
+import logging
 
-\lstinputlisting[caption={utils.py: ArcFace embedding loader with dimension validation}]{utils.py}
+logger = logging.getLogger(__name__)
 
+# ArcFace (InsightFace buffalo_s / buffalo_l) always produces 512-d embeddings.
+EXPECTED_EMBEDDING_DIM = 512
+
+
+def load_known_faces(embeddings_file: str) -> dict:
+    """
+    Load face embeddings from a .npy dict file.
+
+    Returns an empty dict (instead of raising) when the file is missing,
+    corrupt, or contains embeddings from the old Facenet128/Facenet512 model
+    so the rest of the system can keep running and the user gets a clear
+    log message explaining what to do.
+    """
+    if not os.path.exists(embeddings_file):
+        logger.warning(
+            f"Embeddings file '{embeddings_file}' not found - "
+            "starting with no enrolled faces.  "
+            "Use the web UI (/create_encoding) to enrol people."
+        )
+        return {}
+
+    try:
+        data = np.load(embeddings_file, allow_pickle=True).item()
+    except Exception as exc:
+        logger.error(f"Failed to load '{embeddings_file}': {exc}")
+        return {}
+
+    if not isinstance(data, dict):
+        logger.error("Embeddings file has unexpected format (expected dict) - ignoring.")
+        return {}
+
+    # Validate dimension for every stored embedding.
+    # InsightFace buffalo_s ArcFace (w600k_mbf) produces 512-d vectors.
+    # The old keras-facenet model produced 128-d vectors - reject those.
+    # Note: InsightFace w600k_mbf outputs un-normalised vectors (norm~=20-30)
+    # on some ONNX runtime versions, so we do NOT filter on L2-norm.
+    # Cosine similarity (_cosine_sim) normalises both vectors explicitly,
+    # so the comparison is correct regardless of output scale.
+    for name, emb in data.items():
+        dim = len(emb)
+
+        if dim != EXPECTED_EMBEDDING_DIM:
+            logger.warning(
+                f"Dimension mismatch: '{name}' has {dim}-d embeddings but "
+                f"ArcFace expects {EXPECTED_EMBEDDING_DIM}-d.  "
+                "Please re-enrol all faces via /create_encoding."
+            )
+            return {}
+
+    logger.info(
+        f"Loaded {len(data)} enrolled face(s): {list(data.keys())}"
+    )
+    return data
+\end{lstlisting}
+
+% -----------------------------------------------------------------------------
 \section{main.py}
+\begin{lstlisting}
+"""
+CLI entry-point for SafeGuard real-time detection.
 
-\lstinputlisting[caption={main.py: CLI entry point}]{main.py}
+All detection logic lives in pipeline.py.  This file is intentionally thin
+so that `python main.py` is the only thing needed to start the camera loop.
+"""
+from pipeline import detect_objects_in_realtime
 
+if __name__ == "__main__":
+    detect_objects_in_realtime()
+\end{lstlisting}
+
+% -----------------------------------------------------------------------------
 \section{app.py}
+\begin{lstlisting}
+"""
+SafeGuard - Flask web interface.
 
-\lstinputlisting[caption={app.py: Flask web server with enrollment and streaming routes}]{app.py}
+Routes
+------
+GET  /                  Home page
+GET  /detection         Live stream viewer
+GET  /video_feed        MJPEG stream (consumed by <img> in detection.html)
+GET  /stop_stream       Stop the running stream
+GET  /safepeople        List enrolled people
+GET/POST /create_encoding  Enrol or delete people
+
+Security hardening applied
+--------------------------
+* werkzeug.utils.secure_filename() on every upload path
+* Extension allowlist - only .jpg / .jpeg / .png accepted
+* MAX_CONTENT_LENGTH = 10 MB cap on incoming requests
+* Person name sanitised before use as a directory name
+* Embedding update runs in a daemon background thread so the HTTP response
+  returns immediately instead of blocking for 30-120 seconds
+"""
+import os
+import cv2
+import numpy as np
+import shutil
+import threading
+import logging
+
+from flask import Flask, request, render_template, Response
+from werkzeug.utils import secure_filename
+
+from pipeline import generate_frames
+from face_detection import get_face_app
+from utils import load_known_faces
+from config import EMBEDDINGS_FILE, DATASET_FOLDER
+
+logger = logging.getLogger(__name__)
+
+# --- App setup ----------------------------------------------------------------
+
+app = Flask(__name__)
+app.config["UPLOAD_FOLDER"]      = DATASET_FOLDER
+app.config["MAX_CONTENT_LENGTH"] = 10 * 1024 * 1024   # 10 MB max upload
+
+os.makedirs(DATASET_FOLDER, exist_ok=True)
+
+ALLOWED_EXTENSIONS = {"jpg", "jpeg", "png"}
+
+# --- Stream state -------------------------------------------------------------
+
+streaming  = True
+stop_event = threading.Event()
+
+# --- Embedding update state ---------------------------------------------------
+
+_embed_running = False
+_embed_lock    = threading.Lock()   # protects .npy file reads/writes
+
+
+# --- Helpers ------------------------------------------------------------------
+
+def _allowed_file(filename: str) -> bool:
+    return (
+        "." in filename
+        and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
+    )
+
+
+def _update_embeddings() -> None:
+    """
+    Generate ArcFace embeddings for every enrolled person and persist them.
+
+    Uses the same InsightFace FaceAnalysis singleton as the detection path
+    so enrollment and inference always use the same model and produce
+    identically-dimensioned (512-d) vectors.
+    """
+    face_app = get_face_app()
+    database: dict = {}
+
+    # Load existing embeddings so people not in this batch are preserved.
+    if os.path.exists(EMBEDDINGS_FILE):
+        try:
+            database = np.load(EMBEDDINGS_FILE, allow_pickle=True).item()
+        except Exception as exc:
+            logger.warning(f"Could not load existing embeddings: {exc} - starting fresh.")
+            database = {}
+
+    for person in os.listdir(DATASET_FOLDER):
+        person_path = os.path.join(DATASET_FOLDER, person)
+        if not os.path.isdir(person_path):
+            continue
+
+        embeddings = []
+        for img_name in os.listdir(person_path):
+            if not img_name.lower().endswith((".jpg", ".jpeg", ".png")):
+                continue
+            img_path = os.path.join(person_path, img_name)
+            img = cv2.imread(img_path)
+            if img is None:
+                logger.warning(f"  Cannot read '{img_path}' - skipping.")
+                continue
+            faces = face_app.get(img)
+            if faces:
+                embeddings.append(faces[0].embedding)   # 512-d ArcFace vector
+                logger.debug(f"  Embedded '{img_name}' for '{person}'.")
+            else:
+                logger.warning(f"  No face detected in '{img_name}' - skipping.")
+
+        if embeddings:
+            database[person] = np.mean(embeddings, axis=0)
+            logger.info(f"Enrolled '{person}' from {len(embeddings)} image(s).")
+        else:
+            logger.warning(f"No usable images for '{person}' - not enrolled.")
+
+    with _embed_lock:
+        np.save(EMBEDDINGS_FILE, database)
+    logger.info(f"Embeddings saved.  Enrolled people: {list(database.keys())}")
+
+
+def _run_update_embeddings_bg() -> None:
+    """Background-thread wrapper - sets/clears the running flag."""
+    global _embed_running
+    _embed_running = True
+    try:
+        _update_embeddings()
+    except Exception:
+        logger.exception("Background embedding update failed.")
+    finally:
+        _embed_running = False
+
+
+# --- Routes -------------------------------------------------------------------
+
+@app.route("/")
+def home():
+    return render_template("index.html")
+
+
+@app.route("/detection")
+def detection():
+    return render_template("detection.html")
+
+
+@app.route("/safepeople")
+def safepeople():
+    people = []
+    for name in os.listdir(DATASET_FOLDER):
+        person_folder = os.path.join(DATASET_FOLDER, name)
+        if os.path.isdir(person_folder):
+            images = [
+                f for f in os.listdir(person_folder)
+                if f.lower().endswith((".png", ".jpg", ".jpeg"))
+            ]
+            if images:
+                people.append({
+                    "name":  name,
+                    "image": os.path.join(person_folder, images[0]),
+                })
+    return render_template("safepeople.html", people=people)
+
+
+@app.route("/create_encoding", methods=["GET", "POST"])
+def create_encoding():
+    if request.method != "POST":
+        return render_template("create_encoding.html")
+
+    action = request.form.get("action")
+
+    # --- Add person -----------------------------------------------------------
+    if action == "add":
+        try:
+            person_name = request.form.get("person_name", "").strip()
+            if not person_name:
+                return render_template("create_encoding.html",
+                                       message="[Error] Name cannot be empty.")
+
+            images = request.files.getlist("images")
+            if not images or all(img.filename == "" for img in images):
+                return render_template("create_encoding.html",
+                                       message="[Error] No images uploaded.")
+
+            # Use secure_filename on both the person name (folder) and each image.
+            safe_person  = secure_filename(person_name)
+            person_folder = os.path.join(DATASET_FOLDER, safe_person)
+            os.makedirs(person_folder, exist_ok=True)
+
+            saved = 0
+            for img in images:
+                if img and _allowed_file(img.filename):
+                    img.save(os.path.join(person_folder, secure_filename(img.filename)))
+                    saved += 1
+
+            if saved == 0:
+                return render_template("create_encoding.html",
+                                       message="[Error] No valid JPG/PNG files in upload.")
+
+            # Fire-and-forget background embedding update.
+            if not _embed_running:
+                threading.Thread(target=_run_update_embeddings_bg, daemon=True).start()
+                embed_msg = "Embedding generation started in background."
+            else:
+                embed_msg = "[Wait] Embedding update already running - new images will be picked up."
+
+            logger.info(f"Added {saved} image(s) for '{safe_person}'.")
+            return render_template(
+                "create_encoding.html",
+                message=f"[Success] '{person_name}' added ({saved} image(s)). {embed_msg}",
+            )
+
+        except Exception:
+            logger.exception("Error adding person")
+            return render_template("create_encoding.html",
+                                   message="[Error] Unexpected error - check server logs.")
+
+    # --- Delete person --------------------------------------------------------
+    elif action == "delete":
+        try:
+            person_name   = request.form.get("person_name", "").strip()
+            safe_person   = secure_filename(person_name)
+            person_folder = os.path.join(DATASET_FOLDER, safe_person)
+
+            if not os.path.exists(person_folder):
+                return render_template("create_encoding.html",
+                                       message=f"[Error] '{person_name}' not found.")
+
+            shutil.rmtree(person_folder)
+
+            # Remove the entry from the embeddings file atomically.
+            if os.path.exists(EMBEDDINGS_FILE):
+                with _embed_lock:
+                    db = np.load(EMBEDDINGS_FILE, allow_pickle=True).item()
+                    if person_name in db:
+                        del db[person_name]
+                    if safe_person in db and safe_person != person_name:
+                        del db[safe_person]
+                    np.save(EMBEDDINGS_FILE, db)
+
+            logger.info(f"Deleted '{person_name}'.")
+            return render_template("create_encoding.html",
+                                   message=f"[Success] '{person_name}' deleted.")
+
+        except Exception:
+            logger.exception("Error deleting person")
+            return render_template("create_encoding.html",
+                                   message="[Error] Unexpected error - check server logs.")
+
+    return render_template("create_encoding.html", message="[Error] Unknown action.")
+
+
+@app.route("/video_feed")
+def video_feed():
+    global streaming, stop_event
+    stop_event.clear()
+    streaming = True
+    return Response(
+        generate_frames(stop_event, lambda: streaming),
+        mimetype="multipart/x-mixed-replace; boundary=frame",
+    )
+
+
+@app.route("/stop_stream")
+def stop_stream():
+    global streaming, stop_event
+    streaming = False
+    stop_event.set()
+    logger.info("Stream stopped by user request.")
+    return "Streaming stopped"
+
+
+if __name__ == "__main__":
+    app.run(debug=False, use_reloader=False)
+\end{lstlisting}
+% =============================================================================
+% OUTPUT / RESULTS SNAPSHOTS
+% =============================================================================
+
+\chapter{Output}
+
+This chapter presents the outputs and results obtained from the SafeGuard system during real-time execution. The following snapshots demonstrate the working of weapon detection, person detection, face recognition, and threat alert generation.
+
+\section{System Interface}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{interface.png}
+\caption{Web interface for live monitoring and enrollment}
+\end{figure}
+
+\section{Person Detection}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{person_detection.png}
+\caption{Detection of a person using YOLOv8n}
+\end{figure}
+
+\section{Face Recognition}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{person_detection.png}
+\caption{Recognized vs unknown face using InsightFace}
+\end{figure}
+
+\section{Weapon Detection}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{weapon_detection.png}
+\caption{Weapon detection using custom YOLO model}
+\end{figure}
+
+\section{Generated Encoding}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{Generated_encoding.png}
+\caption{Alert triggered when all threat conditions are satisfied}
+\end{figure}
+
+\section{Email Notification}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{email_alert.png}
+\caption{Email alert with captured frame sent via SMTP}
+\end{figure}
 
 \end{document}
