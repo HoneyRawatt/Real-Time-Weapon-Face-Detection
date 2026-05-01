@@ -1,12 +1,3 @@
-Here is the fully updated `README.md`. 
-
-I have rewritten the **Quick Start**, **Configuration**, and **Troubleshooting** sections to perfectly reflect your new Python 3.11 requirement, the massive CUDA 12.6 GPU upgrade, and the Windows DLL fix script.
-
-You can copy and paste this directly into your project:
-
-***
-
-```markdown
 # SafeGuard — Real-Time Weapon & Face Detection
 
 A real-time security surveillance system that triggers an audio alarm and sends an email alert when it simultaneously detects:
