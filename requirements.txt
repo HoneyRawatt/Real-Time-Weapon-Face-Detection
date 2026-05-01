@@ -8,7 +8,7 @@ ultralytics>=8.1.0          # YOLOv8 + YOLO11 support; >=8.1 for stable YOLO11 A
 # InsightFace bundles SCRFD face detector + ArcFace recogniser (512-d).
 # Models (~85 MB for buffalo_s) are downloaded to ~/.insightface/models/ on first run.
 insightface>=0.7.3
-onnxruntime>=1.16.0         # CPU inference backend for InsightFace ONNX models
+onnxruntime-gpu>=1.16.0     # GPU inference backend for InsightFace ONNX models
 
 # ── Web ───────────────────────────────────────────────────────────────────────
 flask>=2.0.0
@@ -21,7 +21,9 @@ pygame>=2.1.0
 python-dotenv>=1.0.0        # .env file loading
 Pillow>=9.0.0
 
-# ── PyTorch (not pinned here — install matching your hardware) ────────────────
-# CPU:   pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
-# CUDA:  pip install torch torchvision --index-url https://download.pytorch.org/whl/cu121
-# (replace cu121 with your actual CUDA version)
+# ── PyTorch (Hardware Specific - Install separately) ──────────────────────────
+# For NVIDIA GPU (CUDA 12.6) - Highly Recommended for 30 FPS:
+# pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu126 --default-timeout=1000
+#
+# For CPU Only (Fallback, ~8-10 FPS):
+# pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu

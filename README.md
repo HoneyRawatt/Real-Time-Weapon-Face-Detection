@@ -1,3 +1,12 @@
+Here is the fully updated `README.md`. 
+
+I have rewritten the **Quick Start**, **Configuration**, and **Troubleshooting** sections to perfectly reflect your new Python 3.11 requirement, the massive CUDA 12.6 GPU upgrade, and the Windows DLL fix script.
+
+You can copy and paste this directly into your project:
+
+***
+
+```markdown
 # SafeGuard — Real-Time Weapon & Face Detection
 
 A real-time security surveillance system that triggers an audio alarm and sends an email alert when it simultaneously detects:
@@ -5,7 +14,7 @@ A real-time security surveillance system that triggers an audio alarm and sends 
 - An **unknown face** (not enrolled in the safe-people database)
 - A **weapon** (gun or knife)
 
-Supports two run modes : a Flask web UI and a CLI window.
+Supports two run modes: a Flask web UI and a CLI window.
 
 ---
 
@@ -13,7 +22,7 @@ Supports two run modes : a Flask web UI and a CLI window.
 
 | Task | Model | File |
 |------|-------|------|
-| Weapon detection | Custom YOLO11s (100 epochs) | `best100.pt` |
+| Weapon detection | Custom YOLO11s (100 epochs, Roboflow dataset) | `best100.pt` |
 | Person detection | YOLOv8n (COCO pretrained) | `yolov8n.pt` |
 | Face detection | InsightFace SCRFD-500M | downloaded to `~/.insightface/` |
 | Face recognition | InsightFace ArcFace w600k_mbf (512-d) | downloaded to `~/.insightface/` |
@@ -23,34 +32,36 @@ Supports two run modes : a Flask web UI and a CLI window.
 ## Quick Start
 
 ### 1. Create and activate a virtual environment
-
+*Note: Python 3.11 or 3.12 (64-bit) is required. Python 3.13 does not yet have stable PyTorch CUDA support.*
 ```powershell
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
+py -3.11 -m venv venv
+.\venv\Scripts\activate
 python -m pip install --upgrade pip
 ```
 
-### 2. Install PyTorch (CPU)
-
+### 2. Install PyTorch (GPU / CUDA 12.6)
+*Note: A dedicated NVIDIA GPU is highly recommended to achieve a real-time 30 FPS feed.*
 ```powershell
-pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+pip install torch torchvision torchaudio --index-url [https://download.pytorch.org/whl/cu126](https://download.pytorch.org/whl/cu126) --default-timeout=1000
 ```
-
-For NVIDIA GPU replace `cpu` with your CUDA version (e.g. `cu121`).
+*(For a CPU-only setup, replace `cu126` with `cpu` in the URL).*
 
 ### 3. Install remaining dependencies
-
 ```powershell
 pip install -r requirements.txt
 ```
+*InsightFace will download the `buffalo_s` model pack (~85 MB) to `~/.insightface/models/` on the first run.*
 
-InsightFace will download the `buffalo_s` model pack (~85 MB) to `~/.insightface/models/` on first run.
+### 4. Apply Windows GPU Fix (Crucial for CUDA)
+Due to how Python 3.8+ handles secure DLL loading on Windows, ONNX Runtime may struggle to find PyTorch's NVIDIA CUDA files. Run the included fix script to copy the necessary DLLs to the correct folder:
+```powershell
+python ./scripts/fix_gpu.py
+```
 
-### 4. Configure email alerts
+### 5. Configure email alerts
 
 Copy `.env.example` to `.env` and fill in your values:
-
-```
+```env
 ALERT_SENDER_EMAIL=youremail@gmail.com
 ALERT_EMAIL_PASSWORD=xxxx xxxx xxxx xxxx
 ALERT_TO_EMAIL=recipient@gmail.com
@@ -59,12 +70,12 @@ ALERT_TO_EMAIL=recipient@gmail.com
 `ALERT_EMAIL_PASSWORD` must be a **Gmail App Password** (not your account password).  
 Generate one at: Google Account → Security → 2-Step Verification → App Passwords.
 
-### 5. Run
+### 6. Run
 
 **Web UI (recommended):**
 ```powershell
 python app.py
-# Open http://127.0.0.1:5000
+# Open [http://127.0.0.1:5000](http://127.0.0.1:5000)
 ```
 
 **CLI (OpenCV window):**
@@ -108,7 +119,7 @@ All tuneable values are in `config.py` and can be overridden via environment var
 | `PERSON_THRESHOLD` | `0.5` | YOLO person confidence threshold |
 | `ALARM_COOLDOWN` | `5` | Seconds between repeated alarms |
 | `ALARM_EMAIL_THRESHOLD` | `3` | Alarm triggers before email is sent |
-| `FRAME_SKIP` | `3` | Process every Nth frame (higher = lighter CPU) |
+| `FRAME_SKIP` | `3` | Process every Nth frame (Use `1` or `2` for GPU, `3` or higher for CPU) |
 
 ---
 
@@ -116,8 +127,10 @@ All tuneable values are in `config.py` and can be overridden via environment var
 
 | Symptom | Fix |
 |---------|-----|
+| `[ONNXRuntimeError]` or `cublasLt64_12.dll is missing` | Windows is blocking the GPU DLLs. Run `python ./scripts/fix_gpu.py` to copy them into the ONNX directory. |
 | Black camera screen | Another process is holding the camera. Run `taskkill /F /IM python.exe` then restart. |
 | All faces show Unknown | Re-enrol via `/create_encoding`. Check Flask log for embedding errors. |
 | Email not sending | Confirm `.env` exists with correct values. Use an App Password, not your account password. |
 | Camera not found | Change `CAMERA_INDEX` in `.env` (try `0`, `1`, `2`). |
-| Slow detection | Increase `FRAME_SKIP` in `.env` (e.g. `5`). |
+| Slow detection | If on CPU, increase `FRAME_SKIP` in `.env` (e.g. `5`). If on GPU, ensure `fix_gpu.py` was run. |
+```

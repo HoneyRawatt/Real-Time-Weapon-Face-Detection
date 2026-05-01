@@ -10,6 +10,14 @@ The FaceAnalysis object is a module-level singleton initialised lazily on the
 first call to detect_faces() or get_face_app().  InsightFace downloads the
 buffalo_s model pack (~85 MB) to ~/.insightface/models/ on first use.
 """
+
+import os
+
+# --- FORCE PYTHON TO FIND THE CUDA DLLs ---
+torch_lib_path = r"D:\coding\.vscode\project\Real-Time-Weapon-Face-Detection\venv\Lib\site-packages\torch\lib"
+if os.path.exists(torch_lib_path):
+    os.add_dll_directory(torch_lib_path)
+# ------------------------------------------
 import cv2
 import numpy as np
 import logging
@@ -39,7 +47,8 @@ def get_face_app():
         from insightface.app import FaceAnalysis
         _face_app = FaceAnalysis(
             name="buffalo_s",
-            providers=["CPUExecutionProvider"],
+            # Add CUDA here so it runs on the GPU!
+            providers=["CUDAExecutionProvider", "CPUExecutionProvider"],
         )
         # det_size=(320,320) is faster on CPU than the default (640,640)
         # while still catching faces down to ~20×20 px in a 640×480 frame.

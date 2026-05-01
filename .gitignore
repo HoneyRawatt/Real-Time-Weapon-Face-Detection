@@ -22,3 +22,5 @@ facenet_embeddings1.npy
 # best100.pt is committed intentionally (custom trained model)
 # yolov8n.pt is auto-downloaded by ultralytics on first run
 yolov8n.pt
+
+test
