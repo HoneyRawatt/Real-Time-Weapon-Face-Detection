@@ -124,4 +124,3 @@ All tuneable values are in `config.py` and can be overridden via environment var
 | Email not sending | Confirm `.env` exists with correct values. Use an App Password, not your account password. |
 | Camera not found | Change `CAMERA_INDEX` in `.env` (try `0`, `1`, `2`). |
 | Slow detection | If on CPU, increase `FRAME_SKIP` in `.env` (e.g. `5`). If on GPU, ensure `fix_gpu.py` was run. |
-```
