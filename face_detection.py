@@ -11,13 +11,6 @@ first call to detect_faces() or get_face_app().  InsightFace downloads the
 buffalo_s model pack (~85 MB) to ~/.insightface/models/ on first use.
 """
 
-import os
-
-# --- FORCE PYTHON TO FIND THE CUDA DLLs ---
-torch_lib_path = r"D:\coding\.vscode\project\Real-Time-Weapon-Face-Detection\venv\Lib\site-packages\torch\lib"
-if os.path.exists(torch_lib_path):
-    os.add_dll_directory(torch_lib_path)
-# ------------------------------------------
 import cv2
 import numpy as np
 import logging
